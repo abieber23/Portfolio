@@ -1,0 +1,54 @@
+@let t = language.texts().projects;
+
+<section id="projects" class="projects">
+  <p class="projects__label">{{ t.label }}</p>
+  <h2 class="projects__heading">{{ t.heading }}</h2>
+  <p class="projects__intro">{{ t.intro }}</p>
+
+  <div class="projects__body">
+    <ul class="projects__list" (mouseleave)="activeIndex.set(null)">
+      @for (project of projects; track project.name; let i = $index) {
+        <li
+          class="project"
+          [class.project--active]="activeIndex() === i"
+          tabindex="0"
+          #row
+          (mouseenter)="activate(i, row)"
+          (focus)="activate(i, row)"
+          (blur)="activeIndex.set(null)"
+        >
+          <h3 class="project__name">
+            {{ project.name }}
+            <svg class="project__arrow" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7 17 17 7M8 7h9v9" />
+            </svg>
+          </h3>
+          <p class="project__techs">
+            @for (tech of project.techs; track tech; let last = $last) {
+              {{ tech }}
+              @if (!last) {
+                <span class="project__sep" aria-hidden="true">|</span>
+              }
+            }
+          </p>
+        </li>
+      }
+    </ul>
+
+    <div
+      #preview
+      class="preview"
+      [class.preview--visible]="activeProject()"
+      [style.--preview-offset.px]="previewOffset()"
+    >
+      @if (activeProject(); as project) {
+        @if (project.image) {
+          <img class="preview__image" [src]="project.image" [alt]="t.previewOf + ' ' + project.name" />
+        } @else {
+          <!-- TODO: placeholder until the project screenshots are added -->
+          <div class="preview__image preview__image--placeholder">{{ project.name }}</div>
+        }
+      }
+    </div>
+  </div>
+</section>

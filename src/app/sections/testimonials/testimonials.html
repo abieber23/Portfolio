@@ -1,0 +1,47 @@
+@let t = language.texts().testimonials;
+
+<section class="testimonials">
+  <h2 class="testimonials__heading">{{ t.heading }}</h2>
+
+  <div class="testimonials__stage">
+    <!-- stays in place while the cards switch underneath it -->
+    <svg class="testimonials__quote" viewBox="0 0 90 64" aria-hidden="true">
+      <path
+        d="M0 64V40C0 17 11 4 34 0l4 9C26 13 20 21 19 32h17v32H0Zm52 0V40C52 17 63 4 86 0l4 9c-12 4-18 12-19 23h17v32H52Z"
+      />
+    </svg>
+
+    @for (slot of slots(); track slot.key) {
+      <figure
+        class="card"
+        [class.card--active]="slot.offset === 0"
+        [class.card--hidden]="slot.offset < -1 || slot.offset > 1"
+        [style.--offset]="slot.offset"
+        [attr.aria-hidden]="slot.offset !== 0"
+        (click)="slot.offset !== 0 && onSlotClick(slot.offset)"
+      >
+        <blockquote class="card__text">{{ slot.item.text }}</blockquote>
+        <figcaption class="card__author">{{ slot.item.author }} - {{ slot.item.role }}</figcaption>
+      </figure>
+    }
+  </div>
+
+  <div class="controls">
+    <button type="button" class="controls__arrow" [attr.aria-label]="t.previous" (click)="previous()">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12H4m7-7-7 7 7 7" /></svg>
+    </button>
+    @for (item of t.items; track $index) {
+      <button
+        type="button"
+        class="controls__dot"
+        [class.controls__dot--active]="activeIndex() === $index"
+        [attr.aria-label]="t.goTo + ' ' + ($index + 1)"
+        [attr.aria-current]="activeIndex() === $index"
+        (click)="goTo($index)"
+      ></button>
+    }
+    <button type="button" class="controls__arrow" [attr.aria-label]="t.next" (click)="next()">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16m-7-7 7 7-7 7" /></svg>
+    </button>
+  </div>
+</section>

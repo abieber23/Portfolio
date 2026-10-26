@@ -1,0 +1,46 @@
+@let t = language.texts().about;
+
+<section id="about" class="about">
+  <div class="about__photo-wrap">
+    <!-- TODO: replace placeholder with <img class="about__photo" src="..." [alt]="t.photoAlt" /> -->
+    <div class="about__photo about__photo--placeholder" role="img" [attr.aria-label]="t.photoAlt">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0 2c-4.42 0-9 2.24-9 5.5V22h18v-2.5c0-3.26-4.58-5.5-9-5.5Z" />
+      </svg>
+    </div>
+  </div>
+
+  <div class="about__text">
+    <p class="about__label">{{ t.label }}</p>
+    <div class="about__card">
+      <h2 class="about__heading">{{ t.heading }}</h2>
+      <p class="about__intro">{{ t.intro }}</p>
+
+      <ul class="about__points">
+        @for (point of t.points; track $index) {
+          <li>
+            <svg class="about__icon" viewBox="0 0 24 24" aria-hidden="true">
+              @switch (pointIcons[$index]) {
+                @case ('location') {
+                  <path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5Z" />
+                }
+                @case ('learning') {
+                  <path
+                    d="M12 2a7 7 0 0 0-4 12.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26A7 7 0 0 0 12 2Zm-3 18.5h6V22H9v-1.5Z"
+                  />
+                }
+                @case ('solving') {
+                  <path
+                    d="m12 1 2.6 2.2 3.4-.3.8 3.3 2.9 1.8-1.3 3.2 1.3 3.2-2.9 1.8-.8 3.3-3.4-.3L12 23l-2.6-2.2-3.4.3-.8-3.3-2.9-1.8L3.6 12 2.3 8.8l2.9-1.8.8-3.3 3.4.3L12 1Z"
+                  />
+                  <path class="about__icon-check" d="m7.8 12.2 2.9 2.9 5.5-5.6" />
+                }
+              }
+            </svg>
+            <span>{{ point }}</span>
+          </li>
+        }
+      </ul>
+    </div>
+  </div>
+</section>

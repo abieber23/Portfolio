@@ -1,0 +1,63 @@
+@let t = language.texts().skills;
+
+<section id="skills" class="skills">
+  <div class="skills__text">
+    <p class="skills__label">{{ t.label }}</p>
+    <div class="skills__card">
+      <h2 class="skills__heading">{{ t.heading }}</h2>
+      <p class="skills__intro">{{ t.intro }}</p>
+      <h3 class="skills__another">
+        {{ t.anotherSkill }} <span>{{ t.anotherSkillAccent }}</span>
+      </h3>
+      <p class="skills__contact">{{ t.contactText }}</p>
+      <a href="#contact" class="skills__cta">{{ t.cta }}</a>
+    </div>
+  </div>
+
+  <ul class="skills__grid">
+    @for (skill of skills; track skill.name) {
+      <li class="skill">
+        <img class="skill__icon" [src]="'img/skills/' + skill.icon" alt="" width="60" height="60" />
+        <span>{{ skill.name }}</span>
+      </li>
+    }
+
+    <li #growth class="skill skill--growth">
+      @if (learningOpen()) {
+        <div id="learning-popup" class="learning">
+          <p>{{ t.learningInterest }}</p>
+          <div class="learning__techs">
+            <span class="learning__tech">
+              <svg viewBox="-11.5 -10.23 23 20.46" aria-hidden="true">
+                <circle r="2.05" fill="#61dafb" />
+                <g fill="none" stroke="#61dafb" stroke-width="1">
+                  <ellipse rx="11" ry="4.2" />
+                  <ellipse rx="11" ry="4.2" transform="rotate(60)" />
+                  <ellipse rx="11" ry="4.2" transform="rotate(120)" />
+                </g>
+              </svg>
+              React
+            </span>
+            <span class="learning__tech">
+              <svg viewBox="0 0 24 21" aria-hidden="true">
+                <path fill="#41b883" d="M0 0h4.6L12 12.8 19.4 0H24L12 20.8 0 0Z" />
+                <path fill="#35495e" d="M4.6 0h4.3L12 5.4 15.1 0h4.3L12 12.8 4.6 0Z" />
+              </svg>
+              Vue Js
+            </span>
+          </div>
+        </div>
+      }
+      <button
+        type="button"
+        class="skill__toggle"
+        [attr.aria-expanded]="learningOpen()"
+        aria-controls="learning-popup"
+        (click)="toggleLearning()"
+      >
+        <img class="skill__icon" src="img/skills/growth-mindset.png" alt="" width="60" height="60" />
+        <span>{{ t.growthMindset }}</span>
+      </button>
+    </li>
+  </ul>
+</section>

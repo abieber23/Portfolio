@@ -1,0 +1,43 @@
+@let t = language.texts().nav;
+
+<header class="header" [class.header--menu-open]="menuOpen()">
+  <div class="header__left">
+    <app-language-toggle class="header__toggle" />
+    <nav class="header__nav">
+      <a href="#about">{{ t.about }}</a>
+      <a href="#skills">{{ t.skills }}</a>
+      <a href="#projects">{{ t.projects }}</a>
+    </nav>
+  </div>
+
+  <a href="#top" class="header__logo" [attr.aria-label]="profile.firstName + ' ' + profile.lastName">
+    <app-logo />
+  </a>
+
+  <button
+    type="button"
+    class="burger"
+    [class.burger--open]="menuOpen()"
+    [attr.aria-expanded]="menuOpen()"
+    aria-controls="mobile-menu"
+    [attr.aria-label]="menuOpen() ? t.closeMenu : t.openMenu"
+    (click)="toggleMenu()"
+  >
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</header>
+
+<div id="mobile-menu" class="mobile-menu" [class.mobile-menu--open]="menuOpen()" [attr.inert]="menuOpen() ? null : ''">
+  <nav class="mobile-menu__nav">
+    <a href="#about" (click)="closeMenu()">{{ t.about }}</a>
+    <a href="#skills" (click)="closeMenu()">{{ t.skills }}</a>
+    <a href="#projects" (click)="closeMenu()">{{ t.projects }}</a>
+  </nav>
+  <app-language-toggle />
+  <div class="mobile-menu__contact">
+    <a [href]="'mailto:' + profile.email">{{ profile.email }}</a>
+    <app-social-links />
+  </div>
+</div>

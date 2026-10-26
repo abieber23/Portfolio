@@ -1,0 +1,46 @@
+@let t = language.texts().hero;
+
+<section id="top" class="hero">
+  <div class="hero__content">
+    <p class="hero__role">{{ t.role }}</p>
+    <h1 class="hero__name">{{ profile.firstName }} {{ profile.lastName }}</h1>
+    <div class="hero__actions">
+      <a href="#projects" class="btn">{{ t.checkWork }}</a>
+      <a href="#contact" class="btn">{{ t.contact }}</a>
+    </div>
+  </div>
+
+  <div class="hero__side hero__side--left">
+    <a href="#about" class="scroll-down" [attr.aria-label]="t.scrollDown">
+      <span aria-hidden="true">↓</span>
+    </a>
+    <span class="hero__line"></span>
+  </div>
+
+  <div class="hero__side hero__side--right">
+    <a [href]="'mailto:' + profile.email" class="hero__email">{{ profile.email }}</a>
+    <app-social-links class="hero__socials" />
+    <span class="hero__line"></span>
+  </div>
+
+  <div
+    class="marquee"
+    [class.marquee--dragging]="dragging()"
+    (pointerenter)="onPointerEnter($event)"
+    (pointerleave)="onPointerLeave()"
+    (pointerdown)="onPointerDown($event)"
+    (pointermove)="onPointerMove($event)"
+    (pointerup)="onPointerUp($event)"
+    (pointercancel)="onPointerUp($event)"
+  >
+    <div #track class="marquee__track">
+      @for (copy of [0, 1]; track copy) {
+        <ul class="marquee__group" [attr.aria-hidden]="copy === 1 ? 'true' : null">
+          @for (item of marqueeItems(); track $index) {
+            <li>{{ item }}</li>
+          }
+        </ul>
+      }
+    </div>
+  </div>
+</section>

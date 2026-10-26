@@ -1,1 +1,42 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --color-bg: #1c1c1c;
+  --color-text: #ffffff;
+  --color-text-muted: #e1e1e1;
+  --color-card: #1e2a27;
+  --color-name: #e1e1e1;
+  --color-accent: #3dcfb6;
+  --color-accent-muted: rgba(61, 207, 182, 0.55);
+  --color-line: rgba(255, 255, 255, 0.55);
+  --color-project-hover: #2a524c;
+
+  --font-sans: 'Karla', system-ui, sans-serif;
+  --font-mono: 'Fira Code', ui-monospace, monospace;
+
+  --page-gutter: clamp(16px, 7vw, 100px);
+
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
