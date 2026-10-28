@@ -146,7 +146,8 @@
   position: absolute;
   left: -5%;
   right: -5%;
-  bottom: 48px;
+  /* the -3deg tilt drops the left end by ~2.6% of the viewport width, so the gap grows with it */
+  bottom: calc(24px + 2.7vw);
   /* above the side lines, which show through blurred like frosted glass */
   z-index: 4;
   overflow: hidden;
@@ -228,7 +229,7 @@
   }
 
   .marquee {
-    bottom: 40px;
+    bottom: calc(16px + 2.7vw);
     padding: 12px 0;
   }
 }

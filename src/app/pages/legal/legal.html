@@ -1,0 +1,18 @@
+@let c = content();
+
+<article class="legal">
+  <h1 class="legal__title">{{ c.title }}</h1>
+
+  @for (section of c.sections; track section.heading) {
+    <section class="legal__section">
+      <h2 class="legal__heading">{{ section.heading }}</h2>
+      @for (paragraph of section.paragraphs; track $index) {
+        <p class="legal__text">{{ paragraph }}</p>
+      }
+    </section>
+  }
+
+  <p class="legal__updated">{{ c.updated }}</p>
+
+  <a routerLink="/" class="legal__back">{{ language.texts().legal.back }}</a>
+</article>

@@ -1,4 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { LanguageService } from '../../core/language.service';
 import { PROFILE } from '../../core/profile';
 import { LanguageToggle } from '../../shared/language-toggle/language-toggle';
@@ -7,7 +8,7 @@ import { SocialLinks } from '../../shared/social-links/social-links';
 
 @Component({
   selector: 'app-header',
-  imports: [LanguageToggle, Logo, SocialLinks],
+  imports: [RouterLink, LanguageToggle, Logo, SocialLinks],
   templateUrl: './header.html',
   styleUrl: './header.scss',
   host: {

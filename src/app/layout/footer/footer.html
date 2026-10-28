@@ -1,0 +1,23 @@
+@let t = language.texts();
+
+<footer class="footer">
+  <div class="footer__about">
+    <a routerLink="/" fragment="top" class="footer__logo" [attr.aria-label]="profile.firstName + ' ' + profile.lastName">
+      <app-logo />
+    </a>
+    <p class="footer__info">
+      <span>{{ t.hero.role }}</span>
+      <span>{{ t.footer.location }}</span>
+    </p>
+  </div>
+
+  <p class="footer__copyright">© {{ profile.firstName }} {{ profile.lastName }} {{ year }}</p>
+
+  <nav class="footer__links">
+    <a [href]="profile.github" target="_blank" rel="noopener noreferrer">GitHub</a>
+    <a [href]="profile.linkedin" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    <a [href]="'mailto:' + profile.email">{{ t.footer.email }}</a>
+    <a routerLink="/legal-notice">{{ t.footer.legalNotice }}</a>
+    <a routerLink="/privacy-policy">{{ t.footer.privacyPolicy }}</a>
+  </nav>
+</footer>

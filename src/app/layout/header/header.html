@@ -4,13 +4,13 @@
   <div class="header__left">
     <app-language-toggle class="header__toggle" />
     <nav class="header__nav">
-      <a href="#about">{{ t.about }}</a>
-      <a href="#skills">{{ t.skills }}</a>
-      <a href="#projects">{{ t.projects }}</a>
+      <a routerLink="/" fragment="about">{{ t.about }}</a>
+      <a routerLink="/" fragment="skills">{{ t.skills }}</a>
+      <a routerLink="/" fragment="projects">{{ t.projects }}</a>
     </nav>
   </div>
 
-  <a href="#top" class="header__logo" [attr.aria-label]="profile.firstName + ' ' + profile.lastName">
+  <a routerLink="/" fragment="top" class="header__logo" [attr.aria-label]="profile.firstName + ' ' + profile.lastName">
     <app-logo />
   </a>
 
@@ -31,9 +31,9 @@
 
 <div id="mobile-menu" class="mobile-menu" [class.mobile-menu--open]="menuOpen()" [attr.inert]="menuOpen() ? null : ''">
   <nav class="mobile-menu__nav">
-    <a href="#about" (click)="closeMenu()">{{ t.about }}</a>
-    <a href="#skills" (click)="closeMenu()">{{ t.skills }}</a>
-    <a href="#projects" (click)="closeMenu()">{{ t.projects }}</a>
+    <a routerLink="/" fragment="about" (click)="closeMenu()">{{ t.about }}</a>
+    <a routerLink="/" fragment="skills" (click)="closeMenu()">{{ t.skills }}</a>
+    <a routerLink="/" fragment="projects" (click)="closeMenu()">{{ t.projects }}</a>
   </nav>
   <app-language-toggle />
   <div class="mobile-menu__contact">
