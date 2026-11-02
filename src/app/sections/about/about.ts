@@ -8,6 +8,4 @@ import { LanguageService } from '../../core/language.service';
 })
 export class About {
   protected readonly language = inject(LanguageService);
-  /** Icon per point, same order as `about.points` in the translations. */
-  protected readonly pointIcons = ['location', 'learning', 'solving'] as const;
 }

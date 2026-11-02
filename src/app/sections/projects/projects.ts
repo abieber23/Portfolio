@@ -12,27 +12,27 @@ import { ProjectDialog } from './project-dialog/project-dialog';
 export class Projects {
   protected readonly language = inject(LanguageService);
 
-  // TODO: replace the GitHub / live URLs with the real ones
+  // TODO: point the GitHub links to the project repos (currently the profile) and set the live URLs
   protected readonly projects: Project[] = [
     {
       key: 'join',
       name: 'Join',
       techs: ['Angular', 'TypeScript', 'HTML', 'CSS', 'Firebase'],
-      github: 'https://github.com/',
+      github: 'https://github.com/abieber23',
       live: 'https://example.com/',
     },
     {
       key: 'pollo',
       name: 'El Pollo Loco',
       techs: ['HTML', 'CSS', 'JavaScript'],
-      github: 'https://github.com/',
+      github: 'https://github.com/abieber23',
       live: 'https://example.com/',
     },
     {
       key: 'bubble',
       name: 'DA Bubble',
       techs: ['Angular', 'Firebase', 'TypeScript'],
-      github: 'https://github.com/',
+      github: 'https://github.com/abieber23',
       live: 'https://example.com/',
     },
   ];

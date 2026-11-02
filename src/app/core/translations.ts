@@ -81,21 +81,20 @@ const en = {
     previous: 'Previous testimonial',
     next: 'Next testimonial',
     goTo: 'Show testimonial',
-    // TODO: replace with real testimonials
     items: [
       {
-        text: 'Adrian was a reliable and motivated team partner. His structured approach and clean code were crucial to the success of our project.',
-        author: 'H. Janisch',
+        text: "Working with Adrian was a lot of fun. He was very direct, ambitious and always wanted to move the project forward. His structured way of working made sure we kept the big picture in view and made progress as a team. On top of that, he's a really likeable guy and I'd gladly work with him again!",
+        author: 'Moritz Böhm',
         role: 'Team Partner',
       },
       {
-        text: "I had the good fortune of working with Adrian on a group project that involved a lot of effort. He always stayed calm and focused and made sure our team was set up for success. He's very knowledgeable, easy to work with, and I'd happily work with him again.",
-        author: 'A. Fischer',
-        role: 'Team Partner',
+        text: 'His code was consistently well structured, cleanly documented and of a very high standard. Mr Bieber regularly contributed his own optimisation ideas, identified areas for improvement on his own initiative and implemented them efficiently.\nMr Bieber impressed with his exceptional commitment, utmost reliability and a remarkable ability to deliver excellent results even under time pressure.\nHe was always friendly, professional and respectful, and was highly valued by everyone involved.',
+        author: 'Daniel Kurzja',
+        role: 'CEO, VIDEOCOMET GmbH',
       },
       {
-        text: "Our project benefited enormously from Adrian's efficient way of working. He communicates clearly, helps others when they get stuck and always keeps an eye on the details.",
-        author: 'M. Weber',
+        text: "I found working with Adrian very positive. He works reliably and independently while always keeping the big picture in mind. Even under time pressure he stays calm, and his commitment contributed a great deal to the successful completion of our project.\nOn a personal level, too, working together was very pleasant. Adrian is helpful, open and brings a relaxed, friendly attitude to the team.\nI'd be happy to work with him again at any time and can recommend him without reservation, both professionally and personally.",
+        author: 'Christopher Braun',
         role: 'Team Partner',
       },
     ],
@@ -221,18 +220,18 @@ const de: Translations = {
     goTo: 'Bewertung anzeigen',
     items: [
       {
-        text: 'Adrian war ein zuverlässiger und motivierter Teampartner. Seine strukturierte Arbeitsweise und sein sauberer Code haben maßgeblich zum Erfolg unseres Projekts beigetragen.',
-        author: 'H. Janisch',
+        text: 'Die Zusammenarbeit mit Adrian hat echt Spaß gemacht. Er war sehr direkt, ehrgeizig und wollte das Projekt immer weiter voranbringen. Durch seine strukturierte Arbeitsweise hat er dafür gesorgt, dass wir den Überblick behalten und als Team weiterkommen. Außerdem ist er ein sehr sympathischer Typ, mit dem ich gerne wieder zusammenarbeiten würde!',
+        author: 'Moritz Böhm',
         role: 'Teampartner',
       },
       {
-        text: 'Ich hatte das Glück, mit Adrian an einem aufwendigen Gruppenprojekt zu arbeiten. Er blieb immer ruhig und konzentriert und hat dafür gesorgt, dass unser Team erfolgreich sein konnte. Er hat viel Fachwissen, die Zusammenarbeit mit ihm ist angenehm, und ich würde jederzeit wieder mit ihm arbeiten.',
-        author: 'A. Fischer',
-        role: 'Teampartner',
+        text: 'Sein Code war durchgehend vorbildlich strukturiert, sauber dokumentiert und auf einem sehr guten Niveau. Herr Bieber brachte regelmäßig eigene Optimierungsideen ein, identifizierte Verbesserungspotenziale selbstständig und setzte diese mit Effizienz um.\nHerr Bieber überzeugte durch außergewöhnliche Einsatzbereitschaft, höchste Zuverlässigkeit und eine bemerkenswerte Fähigkeit, auch unter Zeitdruck hervorragende Ergebnisse zu liefern.\nEr trat stets freundlich, professionell und respektvoll auf und wurde von allen Beteiligten sehr geschätzt.',
+        author: 'Daniel Kurzja',
+        role: 'Geschäftsführer VIDEOCOMET GmbH',
       },
       {
-        text: 'Unser Projekt hat enorm von Adrians effizienter Arbeitsweise profitiert. Er kommuniziert klar, hilft anderen, wenn sie nicht weiterkommen, und behält stets die Details im Blick.',
-        author: 'M. Weber',
+        text: 'Die Zusammenarbeit mit Adrian habe ich als sehr positiv erlebt. Er arbeitet zuverlässig, selbstständig und behält dabei immer das große Ganze im Blick. Auch unter Zeitdruck bleibt er ruhig und hat mit seinem Einsatz viel zum erfolgreichen Abschluss unseres Projekts beigetragen.\nMenschlich war die Zusammenarbeit ebenfalls sehr angenehm. Adrian ist hilfsbereit, offen und bringt eine entspannte, freundliche Art ins Team.\nIch würde jederzeit wieder gerne mit ihm zusammenarbeiten und kann ihn fachlich wie persönlich uneingeschränkt weiterempfehlen.',
+        author: 'Christopher Braun',
         role: 'Teampartner',
       },
     ],

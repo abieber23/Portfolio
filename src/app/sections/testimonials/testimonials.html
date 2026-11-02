@@ -5,11 +5,7 @@
 
   <div class="testimonials__stage">
     <!-- stays in place while the cards switch underneath it -->
-    <svg class="testimonials__quote" viewBox="0 0 90 64" aria-hidden="true">
-      <path
-        d="M0 64V40C0 17 11 4 34 0l4 9C26 13 20 21 19 32h17v32H0Zm52 0V40C52 17 63 4 86 0l4 9c-12 4-18 12-19 23h17v32H52Z"
-      />
-    </svg>
+    <img class="testimonials__quote" src="img/skills/quotes.png" alt="" />
 
     @for (slot of slots(); track slot.key) {
       <figure
@@ -20,7 +16,11 @@
         [attr.aria-hidden]="slot.offset !== 0"
         (click)="slot.offset !== 0 && onSlotClick(slot.offset)"
       >
-        <blockquote class="card__text">{{ slot.item.text }}</blockquote>
+        <blockquote class="card__text">
+          @for (paragraph of slot.item.text.split('\n'); track $index) {
+            <p>{{ paragraph }}</p>
+          }
+        </blockquote>
         <figcaption class="card__author">{{ slot.item.author }} - {{ slot.item.role }}</figcaption>
       </figure>
     }

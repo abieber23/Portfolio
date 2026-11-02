@@ -6,8 +6,8 @@ export const PROFILE = {
   street: '[Straße Hausnummer]',
   zip: '97488',
   city: 'Stadtlauringen',
-  // TODO: replace with the real profile URLs
-  github: 'https://github.com/',
+  github: 'https://github.com/abieber23',
+  // TODO: replace with the real profile URL
   linkedin: 'https://www.linkedin.com/',
 } as const;
 

@@ -21,11 +21,15 @@
 
 /* ---------- cards ---------- */
 
+/* all cards share one grid cell: the stage grows with the longest testimonial
+   and every card gets the same height */
 .testimonials__stage {
   --stage-top: 24px;
 
   position: relative;
-  height: 340px;
+  display: grid;
+  /* room for the side cards, which sit 24px lower */
+  padding: var(--stage-top) 0 24px;
 }
 
 .testimonials__quote {
@@ -34,15 +38,14 @@
   left: calc(50% - var(--card-width) / 2 - 46px);
   z-index: 2;
   width: 84px;
-  fill: var(--color-text);
+  height: auto;
   pointer-events: none;
 }
 
 /* cards are top-aligned so the active card's top edge (and the quote) never moves */
 .card {
-  position: absolute;
-  top: var(--stage-top);
-  left: 50%;
+  grid-area: 1 / 1;
+  justify-self: center;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -58,7 +61,7 @@
   cursor: pointer;
   opacity: 0.75;
   transform-origin: top center;
-  transform: translate(calc(-50% + var(--offset) * var(--step)), 24px) scale(var(--side-scale));
+  transform: translate(calc(var(--offset) * var(--step)), 24px) scale(var(--side-scale));
   transition:
     transform 0.5s ease,
     opacity 0.5s ease,
@@ -71,7 +74,7 @@
   color: var(--color-text);
   cursor: default;
   opacity: 1;
-  transform: translate(-50%, 0);
+  transform: none;
 }
 
 .card--hidden {
@@ -84,6 +87,15 @@
   font-family: var(--font-sans);
   font-size: 18px;
   line-height: 1.35;
+
+  /* "\n" in the translations starts a new paragraph */
+  p {
+    margin: 0 0 16px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 }
 
 .card__author {

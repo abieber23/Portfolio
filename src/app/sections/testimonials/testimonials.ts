@@ -16,6 +16,7 @@ export class Testimonials {
    * Unbounded position: it only ever counts up/down, so every card keeps a stable
    * track key while moving and CSS can animate it from slot to slot.
    */
+  // starts on the middle testimonial (Daniel Kurzja)
   private readonly position = signal(1);
 
   private readonly items = computed(() => this.language.texts().testimonials.items);

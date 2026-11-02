@@ -12,7 +12,7 @@
 
 .about__photo-wrap {
   position: relative;
-  max-width: 568px;
+  max-width: 480px;
   width: 100%;
   justify-self: end;
 
@@ -23,6 +23,7 @@
     left: -46px;
     right: 54px;
     bottom: -30px;
+    border-radius: 30px;
     background: repeating-linear-gradient(45deg, var(--color-accent) 0 1.5px, transparent 1.5px 27px);
   }
 }
@@ -31,23 +32,11 @@
   position: relative;
   display: block;
   width: 100%;
-  aspect-ratio: 1;
+  aspect-ratio: 3 / 4;
   border-radius: 30px;
   object-fit: cover;
-  filter: grayscale(1);
-}
-
-.about__photo--placeholder {
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  overflow: hidden;
-  background: linear-gradient(160deg, #d9d9d9, #8f8f8f);
-
-  svg {
-    width: 70%;
-    fill: #5f5f5f;
-  }
+  /* crop from the left so the person sits closer to the center */
+  object-position: right center;
 }
 
 /* ---------- text card ---------- */
@@ -112,15 +101,7 @@
   width: 32px;
   height: 32px;
   margin-left: -12px;
-  fill: var(--color-accent);
-}
-
-.about__icon-check {
-  fill: none;
-  stroke: var(--color-card);
-  stroke-width: 2.2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+  object-fit: contain;
 }
 
 @media (max-width: 960px) {
