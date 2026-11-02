@@ -1,0 +1,74 @@
+@let t = language.texts().avatar;
+
+<section id="avatar" class="avatar">
+  <p class="avatar__label">{{ t.label }}</p>
+  <h2 class="avatar__heading">{{ t.heading }}</h2>
+  <p class="avatar__intro">{{ t.intro }}</p>
+
+  <div class="avatar__body">
+    <div class="stage">
+      <!-- TODO: D-ID renders the avatar stream into a <video> here -->
+      <div class="stage__video stage__video--placeholder" role="img" [attr.aria-label]="t.videoLabel">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0 2c-4.42 0-9 2.24-9 5.5V22h18v-2.5c0-3.26-4.58-5.5-9-5.5Z" />
+        </svg>
+        <span class="stage__badge">{{ t.comingSoon }}</span>
+      </div>
+
+      @if (!started()) {
+        <div class="stage__start">
+          <button type="button" class="stage__start-btn" (click)="start()">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7L8 5Z" /></svg>
+            {{ t.start }}
+          </button>
+          <p class="stage__consent">
+            {{ t.consentBefore }}
+            <a routerLink="/privacy-policy" target="_blank">{{ t.consentLink }}</a>.
+          </p>
+        </div>
+      }
+    </div>
+
+    <div class="chat">
+      <p class="chat__title">
+        <span class="chat__status" aria-hidden="true"></span>
+        {{ t.chatTitle }}
+      </p>
+
+      <ol #log class="chat__log" aria-live="polite">
+        <li class="message message--avatar">{{ t.greeting }}</li>
+        @for (message of messages(); track $index) {
+          <li class="message" [class.message--avatar]="message.from === 'avatar'" [class.message--user]="message.from === 'user'">
+            {{ message.text }}
+          </li>
+        }
+      </ol>
+
+      <div class="chat__suggestions">
+        @for (suggestion of t.suggestions; track suggestion) {
+          <button type="button" class="chat__suggestion" [disabled]="!started()" (click)="send(suggestion)">
+            {{ suggestion }}
+          </button>
+        }
+      </div>
+
+      <form class="chat__form" (submit)="$event.preventDefault(); send()">
+        <label class="visually-hidden" for="avatar-question">{{ t.inputLabel }}</label>
+        <input
+          id="avatar-question"
+          class="chat__input"
+          type="text"
+          autocomplete="off"
+          maxlength="500"
+          [placeholder]="started() ? t.inputPlaceholder : t.startFirst"
+          [disabled]="!started()"
+          [value]="draft()"
+          (input)="draft.set($any($event.target).value)"
+        />
+        <button type="submit" class="chat__send" [attr.aria-label]="t.send" [disabled]="!draft().trim()">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16m-7-7 7 7-7 7" /></svg>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>

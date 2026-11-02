@@ -118,14 +118,23 @@ const de: Record<LegalDocKey, LegalDoc> = {
         ],
       },
       {
-        heading: '9. Ihre Rechte',
+        heading: '9. KI-Avatar (D-ID)',
+        paragraphs: [
+          'Auf dieser Website können Sie per Texteingabe mit einem KI-Avatar chatten, der Fragen zu meiner Person, meinen Skills und Projekten schriftlich und per Sprachausgabe beantwortet. Der Avatar wird von D-ID bereitgestellt (De-Identification Ltd., [Anschrift laut Datenschutzerklärung von D-ID], Israel).',
+          'Der Avatar wird erst geladen, wenn Sie ihn aktiv starten. Erst dann wird eine Verbindung zu den Servern von D-ID aufgebaut. Dabei werden Ihre IP-Adresse, technische Verbindungsdaten (z. B. Browser-Informationen) sowie die von Ihnen eingegebenen Texte an D-ID übermittelt und dort verarbeitet, um die Antwort zu erzeugen und als Video mit Sprache auszugeben. Ein Mikrofon wird nicht verwendet.',
+          'Rechtsgrundlage ist Ihre Einwilligung (Art. 6 Abs. 1 lit. a DSGVO, § 25 Abs. 1 TDDDG), die Sie durch das Starten des Avatars erteilen und jederzeit mit Wirkung für die Zukunft widerrufen können, indem Sie den Chat beenden bzw. die Seite schließen. Für Israel besteht ein Angemessenheitsbeschluss der EU-Kommission. Soweit D-ID Daten in die USA übermittelt, erfolgt dies auf Grundlage des EU-US Data Privacy Framework bzw. von EU-Standardvertragsklauseln.',
+          'Bitte geben Sie im Chat keine sensiblen personenbezogenen Daten ein. Weitere Informationen finden Sie in der Datenschutzerklärung von D-ID: https://www.d-id.com/privacy-policy/',
+        ],
+      },
+      {
+        heading: '10. Ihre Rechte',
         paragraphs: [
           'Sie haben jederzeit das Recht auf Auskunft (Art. 15 DSGVO), Berichtigung (Art. 16 DSGVO), Löschung (Art. 17 DSGVO), Einschränkung der Verarbeitung (Art. 18 DSGVO), Datenübertragbarkeit (Art. 20 DSGVO) sowie Widerspruch gegen die Verarbeitung (Art. 21 DSGVO). Eine erteilte Einwilligung können Sie jederzeit mit Wirkung für die Zukunft widerrufen (Art. 7 Abs. 3 DSGVO). Wenden Sie sich dazu einfach per E-Mail an mich.',
           'Außerdem haben Sie das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren (Art. 77 DSGVO), zum Beispiel beim Bayerischen Landesamt für Datenschutzaufsicht, Promenade 18, 91522 Ansbach.',
         ],
       },
       {
-        heading: '10. SSL-/TLS-Verschlüsselung',
+        heading: '11. SSL-/TLS-Verschlüsselung',
         paragraphs: [
           'Aus Sicherheitsgründen nutzt diese Website eine SSL-/TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie an „https://“ in der Adresszeile Ihres Browsers.',
         ],
@@ -223,14 +232,23 @@ const en: Record<LegalDocKey, LegalDoc> = {
         ],
       },
       {
-        heading: '9. Your rights',
+        heading: '9. AI avatar (D-ID)',
+        paragraphs: [
+          'On this website you can chat via text input with an AI avatar that answers questions about me, my skills and my projects in writing and with speech output. The avatar is provided by D-ID (De-Identification Ltd., [address as stated in D-ID’s privacy policy], Israel).',
+          'The avatar is only loaded once you actively start it. Only then is a connection to D-ID’s servers established. In the process, your IP address, technical connection data (e.g. browser information) and the texts you enter are transmitted to D-ID and processed there in order to generate the answer and play it back as a video with speech. No microphone is used.',
+          'The legal basis is your consent (Art. 6 (1) (a) GDPR, § 25 (1) TDDDG), which you give by starting the avatar and can withdraw at any time with effect for the future by ending the chat or closing the page. The European Commission has issued an adequacy decision for Israel. Where D-ID transfers data to the USA, this is based on the EU-US Data Privacy Framework or EU standard contractual clauses.',
+          'Please do not enter any sensitive personal data in the chat. For more information, see D-ID’s privacy policy: https://www.d-id.com/privacy-policy/',
+        ],
+      },
+      {
+        heading: '10. Your rights',
         paragraphs: [
           'You have the right to access (Art. 15 GDPR), rectification (Art. 16 GDPR), erasure (Art. 17 GDPR), restriction of processing (Art. 18 GDPR), data portability (Art. 20 GDPR) and to object to processing (Art. 21 GDPR) at any time. You can withdraw any consent you have given at any time with effect for the future (Art. 7 (3) GDPR). Simply contact me by email.',
           'You also have the right to lodge a complaint with a data protection supervisory authority (Art. 77 GDPR), for example the Bavarian Data Protection Authority (Bayerisches Landesamt für Datenschutzaufsicht), Promenade 18, 91522 Ansbach, Germany.',
         ],
       },
       {
-        heading: '10. SSL/TLS encryption',
+        heading: '11. SSL/TLS encryption',
         paragraphs: [
           'For security reasons, this website uses SSL/TLS encryption. You can recognise an encrypted connection by “https://” in your browser’s address bar.',
         ],

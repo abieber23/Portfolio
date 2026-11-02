@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { PAGE_TITLE } from '../../core/profile';
 import { About } from '../../sections/about/about';
+import { Avatar } from '../../sections/avatar/avatar';
 import { Contact } from '../../sections/contact/contact';
 import { Hero } from '../../sections/hero/hero';
 import { Projects } from '../../sections/projects/projects';
@@ -10,11 +11,12 @@ import { Testimonials } from '../../sections/testimonials/testimonials';
 
 @Component({
   selector: 'app-home',
-  imports: [Hero, About, Skills, Projects, Testimonials, Contact],
+  imports: [Hero, About, Skills, Avatar, Projects, Testimonials, Contact],
   template: `
     <app-hero />
     <app-about />
     <app-skills />
+    <app-avatar />
     <app-projects />
     <app-testimonials />
     <app-contact />

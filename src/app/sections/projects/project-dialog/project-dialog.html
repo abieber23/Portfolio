@@ -1,0 +1,58 @@
+@let t = language.texts().projects;
+
+<dialog #dialog class="dialog" aria-labelledby="project-dialog-title" (close)="closed.emit()" (click)="onDialogClick($event)">
+  <!-- re-created on "next project", so its fade-in plays again -->
+  @for (project of shown(); track project.key) {
+    <div class="card">
+      <button type="button" class="card__close" [attr.aria-label]="t.close" (click)="close()">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5 5 19" /></svg>
+      </button>
+
+      <div class="card__text">
+        <p class="card__number">{{ number() < 10 ? '0' + number() : number() }}</p>
+        <h2 id="project-dialog-title" class="card__name">{{ project.name }}</h2>
+
+        <h3 class="card__subheading">{{ t.about }}</h3>
+        <p class="card__description">{{ t.descriptions[project.key] }}</p>
+
+        <ul class="card__techs">
+          @for (tech of project.techs; track tech) {
+            <li>
+              @if (techIcons[tech]; as icon) {
+                <span class="card__tech-icon" [style.--icon]="'url(' + icon + ')'" aria-hidden="true"></span>
+              }
+              {{ tech }}
+            </li>
+          }
+        </ul>
+
+        <div class="card__links">
+          <a class="card__link" [href]="project.github" target="_blank" rel="noopener noreferrer">
+            GitHub
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" /></svg>
+            <span class="visually-hidden">({{ t.opensInNewTab }})</span>
+          </a>
+          <a class="card__link" [href]="project.live" target="_blank" rel="noopener noreferrer">
+            Live Test
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" /></svg>
+            <span class="visually-hidden">({{ t.opensInNewTab }})</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="card__media">
+        @if (project.image) {
+          <img class="card__image" [src]="project.image" [alt]="t.previewOf + ' ' + project.name" />
+        } @else {
+          <!-- TODO: placeholder until the project screenshots are added -->
+          <div class="card__image card__image--placeholder">{{ project.name }}</div>
+        }
+
+        <button type="button" class="card__next" (click)="next.emit()">
+          {{ t.nextProject }}
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16m-7-7 7 7-7 7" /></svg>
+        </button>
+      </div>
+    </div>
+  }
+</dialog>

@@ -40,11 +40,41 @@ const en = {
     growthMindset: 'Growth mindset',
     learningInterest: 'I have a special interest in learning',
   },
+  avatar: {
+    label: 'AI Assistant',
+    heading: 'Ask my avatar',
+    intro:
+      'Curious about my skills, my projects or how I work? My AI avatar knows me well – type your question and it will answer you in writing and out loud.',
+    comingSoon: 'Coming soon',
+    start: 'Start avatar',
+    consentBefore: 'When you start the avatar, your input is processed by D-ID. More in the',
+    consentLink: 'privacy policy',
+    startFirst: 'Start the avatar to ask a question',
+    videoLabel: 'AI avatar of Adrian Bieber',
+    chatTitle: 'Chat with my avatar',
+    greeting: "Hi, I'm Adrian's AI avatar! Ask me anything about his experience, skills or projects.",
+    placeholderReply: "I'm not quite ready yet – my avatar is still being set up. Until then, feel free to use the contact form below!",
+    suggestions: ['What are your skills?', 'Which projects have you built?', 'Are you open to remote work?'],
+    inputLabel: 'Your question',
+    inputPlaceholder: 'Type your question...',
+    send: 'Send',
+  },
   projects: {
     label: 'Portfolio',
     heading: 'Featured Projects',
     intro: 'Explore a selection of my work here – interact with the projects to see my skills in action.',
     previewOf: 'Preview of',
+    about: 'What is this project about?',
+    nextProject: 'Next project',
+    close: 'Close',
+    opensInNewTab: 'opens in a new tab',
+    descriptions: {
+      join: 'Task manager inspired by the Kanban system. Create and organize tasks using drag and drop, assign users and categories.',
+      pollo:
+        'Jump, run and throw game based on an object-oriented approach. Help Pepe find coins and tabasco salsa to fight against the crazy hen.',
+      bubble:
+        'A Slack clone that makes team communication and collaboration easy, with an intuitive interface, real-time messaging and well-organized channels.',
+    },
   },
   testimonials: {
     heading: 'What my colleagues say about me',
@@ -147,11 +177,42 @@ const de: Translations = {
     growthMindset: 'Growth Mindset',
     learningInterest: 'Besonders interessiert mich gerade',
   },
+  avatar: {
+    label: 'KI-Assistent',
+    heading: 'Fragen Sie meinen Avatar',
+    intro:
+      'Sie möchten mehr über meine Skills, meine Projekte oder meine Arbeitsweise wissen? Mein KI-Avatar kennt mich gut – tippen Sie Ihre Frage ein, und er antwortet Ihnen schriftlich und per Sprache.',
+    comingSoon: 'Demnächst verfügbar',
+    start: 'Avatar starten',
+    consentBefore: 'Mit dem Start werden Ihre Eingaben von D-ID verarbeitet. Mehr dazu in der',
+    consentLink: 'Datenschutzerklärung',
+    startFirst: 'Starten Sie den Avatar, um eine Frage zu stellen',
+    videoLabel: 'KI-Avatar von Adrian Bieber',
+    chatTitle: 'Chat mit meinem Avatar',
+    greeting: 'Hallo, ich bin Adrians KI-Avatar! Fragen Sie mich alles über seine Erfahrung, Skills oder Projekte.',
+    placeholderReply:
+      'Ich bin noch nicht ganz fertig – mein Avatar wird gerade eingerichtet. Bis dahin nutzen Sie gerne das Kontaktformular weiter unten!',
+    suggestions: ['Welche Skills hast du?', 'Welche Projekte hast du umgesetzt?', 'Bist du offen für Remote-Arbeit?'],
+    inputLabel: 'Ihre Frage',
+    inputPlaceholder: 'Ihre Frage eingeben...',
+    send: 'Senden',
+  },
   projects: {
     label: 'Portfolio',
     heading: 'Ausgewählte Projekte',
     intro: 'Hier finden Sie eine Auswahl meiner Arbeiten – probieren Sie die Projekte aus und erleben Sie meine Fähigkeiten in Aktion.',
     previewOf: 'Vorschau von',
+    about: 'Worum geht es in dem Projekt?',
+    nextProject: 'Nächstes Projekt',
+    close: 'Schließen',
+    opensInNewTab: 'öffnet in einem neuen Tab',
+    descriptions: {
+      join: 'Aufgabenmanager nach dem Vorbild des Kanban-Systems. Aufgaben per Drag-and-drop erstellen und organisieren, Personen und Kategorien zuweisen.',
+      pollo:
+        'Jump-and-Run-Spiel mit objektorientiertem Aufbau. Hilf Pepe, Münzen und Tabasco-Salsa zu finden, um gegen die verrückte Henne zu kämpfen.',
+      bubble:
+        'Ein Slack-Klon, der die Kommunikation und Zusammenarbeit im Team erleichtert – mit intuitiver Oberfläche, Echtzeit-Nachrichten und übersichtlich organisierten Channels.',
+    },
   },
   testimonials: {
     heading: 'Was meine Kollegen über mich sagen',

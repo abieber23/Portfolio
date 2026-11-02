@@ -12,7 +12,12 @@
           class="project"
           [class.project--active]="activeIndex() === i"
           tabindex="0"
+          role="button"
+          aria-haspopup="dialog"
           #row
+          (click)="open(i)"
+          (keydown.enter)="open(i)"
+          (keydown.space)="$event.preventDefault(); open(i)"
           (mouseenter)="activate(i, row)"
           (focus)="activate(i, row)"
           (blur)="activeIndex.set(null)"
@@ -51,4 +56,11 @@
       }
     </div>
   </div>
+
+  <app-project-dialog
+    [project]="openProject()"
+    [number]="(openIndex() ?? 0) + 1"
+    (closed)="openIndex.set(null)"
+    (next)="openNext()"
+  />
 </section>
