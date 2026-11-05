@@ -35,7 +35,7 @@ job applications as a frontend developer. The user communicates in **German** �
 ## Open TODOs (placeholders)
 
 - `profile.ts`: street address, real LinkedIn URL
-- `projects.ts`: per-project repo URLs (currently the GitHub profile), live URLs + screenshots (`image: 'img/projects/…'`); Firebase icon missing
+- `projects.ts`: per-project repo URLs (currently the GitHub profile), screenshots (`image: 'img/projects/…'`); Firebase icon missing
 - `legal-texts.ts`: hosting provider, log retention days `[X]`, D-ID address
 - Contact form submit (`contact.ts` → `onSubmit`) + success/error feedback
 - Google Fonts are loaded from Google's CDN → self-host them, then delete section 6 of the privacy policy
