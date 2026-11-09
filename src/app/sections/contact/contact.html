@@ -77,6 +77,19 @@
       </p>
     </div>
 
-    <button type="submit" class="form__submit" [disabled]="form.invalid">{{ t.submit }}</button>
+    <!-- honeypot, see contact.ts -->
+    <input class="form__honeypot" type="text" formControlName="website" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+    <button type="submit" class="form__submit" [disabled]="form.invalid || status() === 'sending'">
+      {{ status() === 'sending' ? t.sending : t.submit }}
+    </button>
+
+    <p class="form__status" [class.form__status--error]="status() === 'error'" aria-live="polite">
+      @if (status() === 'success') {
+        {{ t.success }}
+      } @else if (status() === 'error') {
+        {{ t.error }}
+      }
+    </p>
   </form>
 </section>

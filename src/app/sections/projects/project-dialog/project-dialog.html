@@ -44,7 +44,7 @@
         @if (project.image) {
           <img class="card__image" [src]="project.image" [alt]="t.previewOf + ' ' + project.name" />
         } @else {
-          <!-- TODO: placeholder until the project screenshots are added -->
+          <!-- fallback for projects without a screenshot -->
           <div class="card__image card__image--placeholder">{{ project.name }}</div>
         }
 

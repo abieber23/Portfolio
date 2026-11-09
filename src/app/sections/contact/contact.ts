@@ -8,6 +8,10 @@ import { PROFILE } from '../../core/profile';
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 type TextField = 'name' | 'email' | 'message';
+type SendStatus = 'idle' | 'sending' | 'success' | 'error';
+
+/** PHP endpoint in `public/`, deployed next to index.html (does not run on `ng serve`). */
+const MAIL_ENDPOINT = 'sendMail.php';
 
 @Component({
   selector: 'app-contact',
@@ -24,7 +28,11 @@ export class Contact {
     email: ['', [Validators.required, Validators.pattern(EMAIL_PATTERN)]],
     message: ['', Validators.required],
     privacy: [false, Validators.requiredTrue],
+    // honeypot: invisible to humans, bots fill it in – the server then silently drops the mail
+    website: [''],
   });
+
+  protected readonly status = signal<SendStatus>('idle');
 
   /** Field currently being edited – its error stays hidden so we never validate while typing. */
   protected readonly focused = signal<TextField | null>(null);
@@ -35,8 +43,26 @@ export class Contact {
     return control.invalid && control.touched && this.focused() !== field;
   }
 
-  protected onSubmit(): void {
-    if (this.form.invalid) return;
-    // TODO: send the message (backend/mail service) and show success/error feedback
+  protected async onSubmit(): Promise<void> {
+    if (this.form.invalid || this.status() === 'sending') return;
+    this.status.set('sending');
+
+    const { name, email, message, website } = this.form.getRawValue();
+    try {
+      const response = await fetch(MAIL_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, message, website }),
+      });
+      const result: { ok?: boolean } = await response.json();
+      if (!response.ok || !result.ok) throw new Error(`Mail endpoint answered ${response.status}`);
+
+      this.form.reset();
+      this.status.set('success');
+    } catch (error) {
+      console.error(error);
+      // keep the input so the visitor can simply try again
+      this.status.set('error');
+    }
   }
 }

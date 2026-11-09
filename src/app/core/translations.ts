@@ -70,8 +70,8 @@ const en = {
     opensInNewTab: 'opens in a new tab',
     descriptions: {
       join: 'Task manager inspired by the Kanban system. Create and organize tasks using drag and drop, assign users and categories.',
-      pollo:
-        'Jump, run and throw game based on an object-oriented approach. Help Pepe find coins and tabasco salsa to fight against the crazy hen.',
+      sharkie:
+        'Underwater action game based on an object-oriented approach. Help Sharkie collect coins and poison bottles to fight against the killer whale.',
       bubble:
         'A Slack clone that makes team communication and collaboration easy, with an intuitive interface, real-time messaging and well-organized channels.',
     },
@@ -122,6 +122,9 @@ const en = {
     privacyAfter: 'and agree to the processing of my data as outlined.',
     privacyRequired: 'Please accept the privacy policy.',
     submit: 'Say Hello ;)',
+    sending: 'Sending…',
+    success: 'Thanks for your message! I will get back to you soon.',
+    error: 'Sorry, your message could not be sent. Please try again or write me an email.',
   },
   footer: {
     location: 'Stadtlauringen, Germany',
@@ -207,8 +210,8 @@ const de: Translations = {
     opensInNewTab: 'öffnet in einem neuen Tab',
     descriptions: {
       join: 'Aufgabenmanager nach dem Vorbild des Kanban-Systems. Aufgaben per Drag-and-drop erstellen und organisieren, Personen und Kategorien zuweisen.',
-      pollo:
-        'Jump-and-Run-Spiel mit objektorientiertem Aufbau. Hilf Pepe, Münzen und Tabasco-Salsa zu finden, um gegen die verrückte Henne zu kämpfen.',
+      sharkie:
+        'Unterwasser-Actionspiel mit objektorientiertem Aufbau. Hilf Sharkie, Münzen und Giftflaschen zu sammeln, um gegen den Killerwal zu kämpfen.',
       bubble:
         'Ein Slack-Klon, der die Kommunikation und Zusammenarbeit im Team erleichtert – mit intuitiver Oberfläche, Echtzeit-Nachrichten und übersichtlich organisierten Channels.',
     },
@@ -259,6 +262,9 @@ const de: Translations = {
     privacyAfter: 'gelesen und stimme der Verarbeitung meiner Daten wie beschrieben zu.',
     privacyRequired: 'Bitte akzeptieren Sie die Datenschutzerklärung.',
     submit: 'Sag Hallo ;)',
+    sending: 'Wird gesendet…',
+    success: 'Danke für Ihre Nachricht! Ich melde mich in Kürze bei Ihnen.',
+    error: 'Ihre Nachricht konnte leider nicht gesendet werden. Bitte versuchen Sie es erneut oder schreiben Sie mir eine E-Mail.',
   },
   footer: {
     location: 'Stadtlauringen, Deutschland',

@@ -12,28 +12,31 @@ import { ProjectDialog } from './project-dialog/project-dialog';
 export class Projects {
   protected readonly language = inject(LanguageService);
 
-  // TODO: point the GitHub links to the project repos (currently the profile)
+  // Join and DA Bubble were group projects – their repos belong to teammates
   protected readonly projects: Project[] = [
     {
       key: 'join',
       name: 'Join',
       techs: ['Angular', 'TypeScript', 'HTML', 'CSS', 'Firebase'],
-      github: 'https://github.com/abieber23',
+      github: 'https://github.com/mustafa927/JOINv2',
       live: 'https://join.adrian-bieber-portfolio.de/',
+      image: 'img/projects/join.png',
     },
     {
-      key: 'pollo',
-      name: 'El Pollo Loco',
+      key: 'sharkie',
+      name: 'Sharkie',
       techs: ['HTML', 'CSS', 'JavaScript'],
-      github: 'https://github.com/abieber23',
+      github: 'https://github.com/abieber23/Sharkie',
       live: 'https://sharkie.adrian-bieber-portfolio.de/',
+      image: 'img/projects/sharkie.png',
     },
     {
       key: 'bubble',
       name: 'DA Bubble',
       techs: ['Angular', 'Firebase', 'TypeScript'],
-      github: 'https://github.com/abieber23',
+      github: 'https://github.com/ChristopherBraun196/DA-Bubble',
       live: 'https://da-bubble.adrian-bieber-portfolio.de/',
+      image: 'img/projects/da-bubble.png',
     },
   ];
 

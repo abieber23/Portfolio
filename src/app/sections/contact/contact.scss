@@ -226,6 +226,29 @@
   }
 }
 
+/* line is always reserved so the feedback doesn't shift the layout */
+.form__status {
+  min-height: 1.3em;
+  margin: 16px 0 0;
+  font-size: 16px;
+  line-height: 1.3;
+  text-align: center;
+  color: var(--color-accent);
+}
+
+.form__status--error {
+  color: var(--color-error);
+}
+
+/* off-screen instead of display:none – some bots skip hidden fields */
+.form__honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
 @media (max-width: 960px) {
   .contact {
     grid-template-columns: 1fr;

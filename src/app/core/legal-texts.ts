@@ -25,14 +25,14 @@ const name = `${PROFILE.firstName} ${PROFILE.lastName}`;
 const addressDe = `${name}\n${PROFILE.street}\n${PROFILE.zip} ${PROFILE.city}\nDeutschland`;
 const addressEn = `${name}\n${PROFILE.street}\n${PROFILE.zip} ${PROFILE.city}\nGermany`;
 
-// TODO: fill in once the hosting provider is chosen
-const hosterDe = '[Name und Anschrift des Hosting-Anbieters]';
-const hosterEn = '[name and address of the hosting provider]';
+const hoster = 'ALL-INKL.COM – Neue Medien Münnich\nInhaber: René Münnich\nHauptstraße 68\n02742 Friedersdorf';
+const hosterDe = `${hoster}\nDeutschland`;
+const hosterEn = `${hoster}\nGermany`;
 
 const de: Record<LegalDocKey, LegalDoc> = {
   legalNotice: {
     title: 'Impressum',
-    updated: 'Stand: Oktober 2026',
+    updated: 'Stand: November 2026',
     sections: [
       { heading: 'Angaben gemäß § 5 DDG', paragraphs: [addressDe] },
       { heading: 'Kontakt', paragraphs: [`E-Mail: ${PROFILE.email}`] },
@@ -62,7 +62,7 @@ const de: Record<LegalDocKey, LegalDoc> = {
   },
   privacyPolicy: {
     title: 'Datenschutzerklärung',
-    updated: 'Stand: Oktober 2026',
+    updated: 'Stand: November 2026',
     sections: [
       {
         heading: '1. Verantwortlicher',
@@ -88,8 +88,8 @@ const de: Record<LegalDocKey, LegalDoc> = {
       {
         heading: '4. Kontaktformular',
         paragraphs: [
-          'Wenn Sie mir über das Kontaktformular eine Nachricht senden, verarbeite ich Ihren Namen, Ihre E-Mail-Adresse und Ihre Nachricht, um Ihre Anfrage zu bearbeiten und zu beantworten.',
-          'Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO, sofern Ihre Anfrage auf einen Vertrag oder eine Anstellung abzielt, ansonsten Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Beantwortung von Anfragen). Ihre Daten werden nicht an Dritte weitergegeben und gelöscht, sobald Ihre Anfrage abschließend bearbeitet ist und keine gesetzlichen Aufbewahrungspflichten entgegenstehen.',
+          'Wenn Sie mir über das Kontaktformular eine Nachricht senden, verarbeite ich Ihren Namen, Ihre E-Mail-Adresse und Ihre Nachricht, um Ihre Anfrage zu bearbeiten und zu beantworten. Die Angaben werden über den Server meines Hosting-Anbieters (siehe Abschnitt 3) per E-Mail an mein Postfach bei Google (Gmail, siehe Abschnitt 5) zugestellt.',
+          'Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO, sofern Ihre Anfrage auf einen Vertrag oder eine Anstellung abzielt, ansonsten Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Beantwortung von Anfragen). Darüber hinaus werden Ihre Daten nicht an Dritte weitergegeben. Sie werden gelöscht, sobald Ihre Anfrage abschließend bearbeitet ist und keine gesetzlichen Aufbewahrungspflichten entgegenstehen.',
         ],
       },
       {
@@ -98,27 +98,20 @@ const de: Record<LegalDocKey, LegalDoc> = {
           'Wenn Sie mir eine E-Mail schreiben, werden Ihre E-Mail-Adresse und der Inhalt der Nachricht zur Bearbeitung Ihrer Anfrage gespeichert. Mein E-Mail-Postfach wird von Google (Gmail) bereitgestellt (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland). Dabei kann eine Übermittlung in die USA nicht ausgeschlossen werden; Google ist nach dem EU-US Data Privacy Framework zertifiziert.',
         ],
       },
-      // TODO: remove this section once the fonts are self-hosted (recommended)
       {
-        heading: '6. Google Fonts',
-        paragraphs: [
-          'Diese Website verwendet Schriftarten von Google Fonts, die beim Seitenaufruf von Servern der Google Ireland Limited geladen werden. Dabei wird Ihre IP-Adresse an Google übermittelt. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO; mein berechtigtes Interesse liegt in einer einheitlichen Darstellung der Website.',
-        ],
-      },
-      {
-        heading: '7. Lokale Speicherung im Browser',
+        heading: '6. Lokale Speicherung im Browser',
         paragraphs: [
           'Diese Website setzt keine Cookies. Ihre Sprachauswahl (Deutsch/Englisch) wird lediglich im lokalen Speicher (localStorage) Ihres Browsers abgelegt, damit sie beim nächsten Besuch erhalten bleibt. Diese Information verlässt Ihr Gerät nicht. Die Speicherung ist für die von Ihnen gewünschte Funktion unbedingt erforderlich (§ 25 Abs. 2 Nr. 2 TDDDG). Sie können sie jederzeit über die Einstellungen Ihres Browsers löschen.',
         ],
       },
       {
-        heading: '8. Links zu GitHub und LinkedIn',
+        heading: '7. Links zu GitHub und LinkedIn',
         paragraphs: [
           'Diese Website enthält einfache Links zu meinen Profilen bei GitHub und LinkedIn. Es werden keine Plugins eingebunden; Daten werden erst übertragen, wenn Sie einen Link anklicken. Ab dann gelten die Datenschutzbestimmungen des jeweiligen Anbieters.',
         ],
       },
       {
-        heading: '9. KI-Avatar (D-ID)',
+        heading: '8. KI-Avatar (D-ID)',
         paragraphs: [
           'Auf dieser Website können Sie per Texteingabe mit einem KI-Avatar chatten, der Fragen zu meiner Person, meinen Skills und Projekten schriftlich und per Sprachausgabe beantwortet. Der Avatar wird von D-ID bereitgestellt (De-Identification Ltd., [Anschrift laut Datenschutzerklärung von D-ID], Israel).',
           'Der Avatar wird erst geladen, wenn Sie ihn aktiv starten. Erst dann wird eine Verbindung zu den Servern von D-ID aufgebaut. Dabei werden Ihre IP-Adresse, technische Verbindungsdaten (z. B. Browser-Informationen) sowie die von Ihnen eingegebenen Texte an D-ID übermittelt und dort verarbeitet, um die Antwort zu erzeugen und als Video mit Sprache auszugeben. Ein Mikrofon wird nicht verwendet.',
@@ -127,14 +120,14 @@ const de: Record<LegalDocKey, LegalDoc> = {
         ],
       },
       {
-        heading: '10. Ihre Rechte',
+        heading: '9. Ihre Rechte',
         paragraphs: [
           'Sie haben jederzeit das Recht auf Auskunft (Art. 15 DSGVO), Berichtigung (Art. 16 DSGVO), Löschung (Art. 17 DSGVO), Einschränkung der Verarbeitung (Art. 18 DSGVO), Datenübertragbarkeit (Art. 20 DSGVO) sowie Widerspruch gegen die Verarbeitung (Art. 21 DSGVO). Eine erteilte Einwilligung können Sie jederzeit mit Wirkung für die Zukunft widerrufen (Art. 7 Abs. 3 DSGVO). Wenden Sie sich dazu einfach per E-Mail an mich.',
           'Außerdem haben Sie das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren (Art. 77 DSGVO), zum Beispiel beim Bayerischen Landesamt für Datenschutzaufsicht, Promenade 18, 91522 Ansbach.',
         ],
       },
       {
-        heading: '11. SSL-/TLS-Verschlüsselung',
+        heading: '10. SSL-/TLS-Verschlüsselung',
         paragraphs: [
           'Aus Sicherheitsgründen nutzt diese Website eine SSL-/TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie an „https://“ in der Adresszeile Ihres Browsers.',
         ],
@@ -146,7 +139,7 @@ const de: Record<LegalDocKey, LegalDoc> = {
 const en: Record<LegalDocKey, LegalDoc> = {
   legalNotice: {
     title: 'Legal Notice',
-    updated: 'Last updated: October 2026',
+    updated: 'Last updated: November 2026',
     sections: [
       { heading: 'Information according to § 5 DDG (German Digital Services Act)', paragraphs: [addressEn] },
       { heading: 'Contact', paragraphs: [`Email: ${PROFILE.email}`] },
@@ -176,7 +169,7 @@ const en: Record<LegalDocKey, LegalDoc> = {
   },
   privacyPolicy: {
     title: 'Privacy Policy',
-    updated: 'Last updated: October 2026',
+    updated: 'Last updated: November 2026',
     sections: [
       {
         heading: '1. Controller',
@@ -202,8 +195,8 @@ const en: Record<LegalDocKey, LegalDoc> = {
       {
         heading: '4. Contact form',
         paragraphs: [
-          'If you send me a message via the contact form, I process your name, your email address and your message in order to handle and answer your request.',
-          'The legal basis is Art. 6 (1) (b) GDPR if your request relates to a contract or employment, otherwise Art. 6 (1) (f) GDPR (legitimate interest in answering enquiries). Your data is not passed on to third parties and is deleted as soon as your request has been fully dealt with, unless statutory retention obligations apply.',
+          'If you send me a message via the contact form, I process your name, your email address and your message in order to handle and answer your request. The data is delivered by email via my hosting provider’s server (see section 3) to my Google mailbox (Gmail, see section 5).',
+          'The legal basis is Art. 6 (1) (b) GDPR if your request relates to a contract or employment, otherwise Art. 6 (1) (f) GDPR (legitimate interest in answering enquiries). Beyond that, your data is not passed on to third parties. It is deleted as soon as your request has been fully dealt with, unless statutory retention obligations apply.',
         ],
       },
       {
@@ -212,27 +205,20 @@ const en: Record<LegalDocKey, LegalDoc> = {
           'If you send me an email, your email address and the content of your message are stored to handle your request. My mailbox is provided by Google (Gmail) (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Ireland). A transfer to the USA cannot be ruled out; Google is certified under the EU-US Data Privacy Framework.',
         ],
       },
-      // TODO: remove this section once the fonts are self-hosted (recommended)
       {
-        heading: '6. Google Fonts',
-        paragraphs: [
-          'This website uses fonts from Google Fonts, which are loaded from servers of Google Ireland Limited when you open the page. In the process, your IP address is transmitted to Google. The legal basis is Art. 6 (1) (f) GDPR; my legitimate interest lies in a consistent presentation of the website.',
-        ],
-      },
-      {
-        heading: '7. Local storage in your browser',
+        heading: '6. Local storage in your browser',
         paragraphs: [
           'This website does not use cookies. Your language selection (German/English) is only saved in your browser’s local storage so that it is kept for your next visit. This information never leaves your device. Storing it is strictly necessary for the function you requested (§ 25 (2) no. 2 TDDDG). You can delete it at any time in your browser settings.',
         ],
       },
       {
-        heading: '8. Links to GitHub and LinkedIn',
+        heading: '7. Links to GitHub and LinkedIn',
         paragraphs: [
           'This website contains simple links to my profiles on GitHub and LinkedIn. No plugins are embedded; data is only transferred once you click a link. From then on, the privacy policy of the respective provider applies.',
         ],
       },
       {
-        heading: '9. AI avatar (D-ID)',
+        heading: '8. AI avatar (D-ID)',
         paragraphs: [
           'On this website you can chat via text input with an AI avatar that answers questions about me, my skills and my projects in writing and with speech output. The avatar is provided by D-ID (De-Identification Ltd., [address as stated in D-ID’s privacy policy], Israel).',
           'The avatar is only loaded once you actively start it. Only then is a connection to D-ID’s servers established. In the process, your IP address, technical connection data (e.g. browser information) and the texts you enter are transmitted to D-ID and processed there in order to generate the answer and play it back as a video with speech. No microphone is used.',
@@ -241,14 +227,14 @@ const en: Record<LegalDocKey, LegalDoc> = {
         ],
       },
       {
-        heading: '10. Your rights',
+        heading: '9. Your rights',
         paragraphs: [
           'You have the right to access (Art. 15 GDPR), rectification (Art. 16 GDPR), erasure (Art. 17 GDPR), restriction of processing (Art. 18 GDPR), data portability (Art. 20 GDPR) and to object to processing (Art. 21 GDPR) at any time. You can withdraw any consent you have given at any time with effect for the future (Art. 7 (3) GDPR). Simply contact me by email.',
           'You also have the right to lodge a complaint with a data protection supervisory authority (Art. 77 GDPR), for example the Bavarian Data Protection Authority (Bayerisches Landesamt für Datenschutzaufsicht), Promenade 18, 91522 Ansbach, Germany.',
         ],
       },
       {
-        heading: '11. SSL/TLS encryption',
+        heading: '10. SSL/TLS encryption',
         paragraphs: [
           'For security reasons, this website uses SSL/TLS encryption. You can recognise an encrypted connection by “https://” in your browser’s address bar.',
         ],

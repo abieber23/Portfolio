@@ -34,12 +34,11 @@ job applications as a frontend developer. The user communicates in **German** �
 
 ## Open TODOs (placeholders)
 
-- `profile.ts`: street address, real LinkedIn URL
-- `projects.ts`: per-project repo URLs (currently the GitHub profile), screenshots (`image: 'img/projects/…'`); Firebase icon missing
-- `legal-texts.ts`: hosting provider, log retention days `[X]`, D-ID address
-- Contact form submit (`contact.ts` → `onSubmit`) + success/error feedback
-- Google Fonts are loaded from Google's CDN → self-host them, then delete section 6 of the privacy policy
-- Hosting must rewrite unknown paths to `index.html` (SPA fallback, e.g. `.htaccess`)
+- `profile.ts`: real LinkedIn URL
+- `projects.ts`: Firebase icon missing
+- `legal-texts.ts`: log retention days `[X]` (from the all-inkl AVV), D-ID address
+- Contact form posts JSON to `public/sendMail.php` (PHP `mail()`, sender `noreply@adrian-bieber-portfolio.de`,
+  honeypot field `website`). PHP doesn't run on `ng serve` – test on the live server (all-inkl / kasserver).
 
 ## AI avatar (D-ID) – planned
 
@@ -55,7 +54,7 @@ Requirements from the user:
 Current placeholder behaviour:
 
 - Consent gate: `started` signal. Before "Start avatar" is clicked, nothing from D-ID may be loaded;
-  chat input and suggestions are disabled. The privacy policy (section 9 "KI-Avatar (D-ID)") relies
+  chat input and suggestions are disabled. The privacy policy (section 8 "KI-Avatar (D-ID)") relies
   on this – **keep the gate when integrating**.
 - `send()` answers locally with `avatar.placeholderReply`.
 - Video area is `.stage__video--placeholder` in `avatar.html`.
@@ -73,5 +72,5 @@ Integration plan (verify the API against the current D-ID docs first):
 5. Handle connection states/errors (`onConnectionStateChange`, `onError`) with a translated message;
    disconnect on component destroy (`DestroyRef`).
 6. Do not request microphone access anywhere.
-7. Afterwards: fill in D-ID's address in `legal-texts.ts` and re-check section 9 against D-ID's
+7. Afterwards: fill in D-ID's address in `legal-texts.ts` and re-check section 8 against D-ID's
    current privacy policy / DPA; remove the "Coming soon" badge.

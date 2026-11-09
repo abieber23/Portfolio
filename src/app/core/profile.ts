@@ -2,8 +2,7 @@ export const PROFILE = {
   firstName: 'Adrian',
   lastName: 'Bieber',
   email: 'adrianbieber2@gmail.com',
-  // TODO: replace with the real street address (required for the legal notice)
-  street: '[Straße Hausnummer]',
+  street: 'Königsweg 1',
   zip: '97488',
   city: 'Stadtlauringen',
   github: 'https://github.com/abieber23',
