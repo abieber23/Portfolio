@@ -234,6 +234,25 @@
   }
 }
 
+@media (max-width: 480px) {
+  .hero__role {
+    font-size: 18px;
+    letter-spacing: 0.04em;
+  }
+
+  .hero__name {
+    font-size: clamp(40px, 13vw, 56px);
+  }
+
+  .hero__actions {
+    gap: 16px;
+  }
+
+  .btn {
+    padding: 10px 20px;
+  }
+}
+
 @media (max-height: 640px) and (max-width: 768px) {
   .hero__side--left {
     display: none;

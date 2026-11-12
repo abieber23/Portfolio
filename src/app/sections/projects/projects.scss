@@ -169,3 +169,44 @@
     display: none;
   }
 }
+
+@media (max-width: 768px) {
+  .projects {
+    padding: 64px var(--page-gutter) 80px;
+  }
+
+  /* name on top, techs below – the row is too narrow for both side by side */
+  .project {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    min-height: 0;
+    padding: 20px 16px;
+  }
+
+  .project__techs {
+    text-align: left;
+  }
+
+  /* no hover on touch devices – the arrow shows that the row opens something */
+  .project__arrow {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .projects__heading {
+    margin-bottom: 24px;
+    font-size: clamp(30px, 9vw, 40px);
+  }
+
+  /* justified text leaves big word gaps in a narrow column */
+  .projects__intro {
+    text-align: left;
+  }
+
+  .project__techs {
+    font-size: 16px;
+  }
+}

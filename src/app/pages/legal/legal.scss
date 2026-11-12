@@ -36,6 +36,31 @@
   hyphens: auto;
 }
 
+@media (max-width: 768px) {
+  .legal {
+    padding-top: 120px;
+  }
+
+  .legal__title {
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .legal__title {
+    /* "Datenschutzerklärung" is wider than a small phone */
+    font-size: clamp(22px, 7vw, 36px);
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+
+  .legal__text {
+    font-size: 16px;
+    /* long URLs / e-mail addresses */
+    overflow-wrap: anywhere;
+  }
+}
+
 .legal__updated {
   margin: 56px 0 40px;
   font-size: 16px;

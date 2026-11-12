@@ -30,7 +30,9 @@ job applications as a frontend developer. The user communicates in **German** �
 - Minimum font size on the whole site is **16px**.
 - Section look: accent label (23px) → mono heading `clamp(40px, 4.5vw, 64px)` → 18px intro; cards
   with 1px accent border, 30px radius, `--color-card` background; pill buttons with white border.
-- Mobile layout is postponed until the user asks for it.
+- Responsive down to **325px**. Breakpoints: 1100 / 960 / 768 / 480px (`max-width` media queries at
+  the end of each component's SCSS). No horizontal page scroll at any width; on ≤480px intros are
+  left-aligned (justify leaves word gaps) and section headings drop to `clamp(30px, 9vw, 40px)`.
 
 ## Open TODOs (placeholders)
 

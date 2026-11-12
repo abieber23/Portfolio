@@ -170,6 +170,57 @@
   background: var(--color-accent);
 }
 
+@media (max-width: 768px) {
+  .testimonials {
+    --card-width: min(632px, 84vw);
+    --card-gap: 32px;
+
+    padding: 64px 0 80px;
+  }
+
+  .testimonials__quote {
+    left: calc(50% - var(--card-width) / 2 - 16px);
+    width: 64px;
+  }
+
+  .card {
+    padding: 52px 28px 32px;
+  }
+
+  /* line moves above the author, so long roles can wrap */
+  .card__author {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    white-space: normal;
+    text-align: right;
+
+    &::before {
+      flex: none;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .testimonials {
+    --card-width: calc(100vw - 2 * var(--page-gutter));
+  }
+
+  .testimonials__quote {
+    left: calc(50% - var(--card-width) / 2 - 8px);
+    top: calc(var(--stage-top) - 20px);
+    width: 52px;
+  }
+
+  .card {
+    padding: 44px 20px 24px;
+  }
+
+  .card__text {
+    font-size: 16px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .card {
     transition: none;

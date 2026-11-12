@@ -254,3 +254,45 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media (max-width: 768px) {
+  .contact {
+    gap: 48px;
+    padding: 80px var(--page-gutter) 64px;
+  }
+
+  .field {
+    padding: 24px 16px 30px;
+  }
+
+  .field__error {
+    left: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact__heading {
+    margin-bottom: 32px;
+    font-size: clamp(28px, 8.5vw, 40px);
+    /* "zusammenarbeiten" is wider than a small phone */
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+
+  .field__label {
+    font-size: 20px;
+  }
+
+  .privacy {
+    margin-top: 32px;
+  }
+
+  /* label wraps over several lines – checkbox sits next to the first one */
+  .privacy__label {
+    align-items: flex-start;
+  }
+
+  .privacy__checkbox {
+    margin-top: 1px;
+  }
+}

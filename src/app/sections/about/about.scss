@@ -119,3 +119,43 @@
     margin-left: 0;
   }
 }
+
+@media (max-width: 768px) {
+  .about {
+    gap: 64px;
+    padding-block: 80px;
+  }
+
+  /* smaller stripe offset, so the backdrop stays inside the viewport */
+  .about__photo-wrap::before {
+    top: 24px;
+    left: -16px;
+    right: 24px;
+    bottom: -20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about {
+    padding-inline: var(--page-gutter);
+  }
+
+  .about__card {
+    padding: 24px 20px;
+  }
+
+  .about__heading {
+    margin-bottom: 24px;
+    font-size: clamp(30px, 9vw, 40px);
+  }
+
+  /* justified text leaves big word gaps in a narrow column */
+  .about__intro {
+    margin-bottom: 24px;
+    text-align: left;
+  }
+
+  .about__points li {
+    gap: 16px;
+  }
+}
