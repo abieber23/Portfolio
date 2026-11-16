@@ -1,18 +1,18 @@
 @let t = language.texts().contact;
 
 <section id="contact" class="contact">
-  <div class="contact__text">
-    <p class="contact__label">{{ t.label }}</p>
-    <h2 class="contact__heading">{{ t.heading }}</h2>
-    <h3 class="contact__subheading">{{ t.subheading }}</h3>
-    <p class="contact__copy">{{ t.intro }}</p>
-    <p class="contact__copy">
+  <div class="contact__text" appReveal="stagger">
+    <p class="contact__label reveal-item" style="--i: 0">{{ t.label }}</p>
+    <h2 class="contact__heading reveal-item" style="--i: 1">{{ t.heading }}</h2>
+    <h3 class="contact__subheading reveal-item" style="--i: 2">{{ t.subheading }}</h3>
+    <p class="contact__copy reveal-item" style="--i: 3">{{ t.intro }}</p>
+    <p class="contact__copy reveal-item" style="--i: 4">
       {{ t.question }}
       <a class="contact__cta" [href]="'mailto:' + profile.email">{{ t.cta }}</a>
     </p>
   </div>
 
-  <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+  <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate appReveal="right" [revealDelay]="200">
     <label class="field" [class.field--error]="showError('name')">
       <span class="field__label">{{ t.nameLabel }}</span>
       <input
@@ -22,9 +22,13 @@
         autocomplete="name"
         [placeholder]="showError('name') ? t.nameRequired : t.namePlaceholder"
         [attr.aria-invalid]="showError('name')"
+        [attr.aria-describedby]="showInvalid('name') ? 'name-error' : null"
         (focus)="focused.set('name')"
-        (blur)="focused.set(null)"
+        (blur)="onBlur('name')"
       />
+      @if (showInvalid('name')) {
+        <span id="name-error" class="field__error" animate.enter="field__error--enter">{{ t.nameInvalid }}</span>
+      }
     </label>
 
     <label class="field" [class.field--error]="showError('email')">
@@ -36,12 +40,12 @@
         autocomplete="email"
         [placeholder]="showError('email') ? t.emailRequired : t.emailPlaceholder"
         [attr.aria-invalid]="showError('email')"
-        [attr.aria-describedby]="showError('email') ? 'email-error' : null"
+        [attr.aria-describedby]="showInvalid('email') ? 'email-error' : null"
         (focus)="focused.set('email')"
-        (blur)="focused.set(null)"
+        (blur)="onBlur('email')"
       />
-      @if (showError('email') && form.controls.email.hasError('pattern')) {
-        <span id="email-error" class="field__error">{{ t.emailInvalid }}</span>
+      @if (showInvalid('email')) {
+        <span id="email-error" class="field__error" animate.enter="field__error--enter">{{ t.emailInvalid }}</span>
       }
     </label>
 
@@ -54,12 +58,12 @@
         [placeholder]="showError('message') ? t.messageRequired : t.messagePlaceholder"
         [attr.aria-invalid]="showError('message')"
         (focus)="focused.set('message')"
-        (blur)="focused.set(null)"
+        (blur)="onBlur('message')"
       ></textarea>
     </label>
 
     <div class="privacy">
-      <label class="privacy__label">
+      <label class="privacy__label" [class.privacy__label--shake]="privacyShake()" (animationend)="privacyShake.set(false)">
         <input class="privacy__checkbox" type="checkbox" formControlName="privacy" />
         <span>
           {{ t.privacyBefore }}
@@ -69,19 +73,26 @@
       </label>
       <p class="privacy__error" aria-live="polite">
         @if (showError('privacy')) {
-          {{ t.privacyRequired }}
+          <span>{{ t.privacyRequired }}</span>
         }
       </p>
     </div>
 
     <input class="form__honeypot" type="text" formControlName="website" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
-    <button type="submit" class="form__submit" [disabled]="form.invalid || status() === 'sending'">
+    <button type="submit" class="form__submit" [disabled]="!fieldsValid() || status() === 'sending'">
+      @if (status() === 'sending') {
+        <span class="form__spinner" aria-hidden="true"></span>
+      }
       {{ status() === 'sending' ? t.sending : t.submit }}
     </button>
 
     <p class="form__status" [class.form__status--error]="status() === 'error'" aria-live="polite">
       @if (status() === 'success') {
+        <svg class="form__check" viewBox="0 0 52 52" aria-hidden="true">
+          <circle cx="26" cy="26" r="24" />
+          <path d="m15 27 7 7 15-16" />
+        </svg>
         {{ t.success }}
       } @else if (status() === 'error') {
         {{ t.error }}

@@ -2,7 +2,7 @@
 
 <dialog #dialog class="dialog" aria-labelledby="project-dialog-title" (close)="closed.emit()" (click)="onDialogClick($event)">
   @for (project of shown(); track project.key) {
-    <div class="card">
+    <div class="card" animate.enter="card--enter" animate.leave="card--leave">
       <button type="button" class="card__close" [attr.aria-label]="t.close" (click)="close()">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5 5 19" /></svg>
       </button>
@@ -12,18 +12,26 @@
         <h2 id="project-dialog-title" class="card__name">{{ project.name }}</h2>
 
         <h3 class="card__subheading">{{ t.about }}</h3>
-        <p class="card__description">{{ t.descriptions[project.key] }}</p>
+        <!-- Every project's text sits in the same grid cell, so the height (and the link position) never changes. -->
+        <div class="card__stack">
+          @for (variant of projects(); track variant.key) {
+            @let hidden = variant.key !== project.key;
+            <div class="card__variant" [class.card__variant--hidden]="hidden" [attr.aria-hidden]="hidden || null">
+              <p class="card__description">{{ t.descriptions[variant.key] }}</p>
 
-        <ul class="card__techs">
-          @for (tech of project.techs; track tech) {
-            <li>
-              @if (techIcons[tech]; as icon) {
-                <span class="card__tech-icon" [style.--icon]="'url(' + icon + ')'" aria-hidden="true"></span>
-              }
-              {{ tech }}
-            </li>
+              <ul class="card__techs">
+                @for (tech of variant.techs; track tech) {
+                  <li>
+                    @if (techIcons[tech]; as icon) {
+                      <span class="card__tech-icon" [style.--icon]="'url(' + icon + ')'" aria-hidden="true"></span>
+                    }
+                    {{ tech }}
+                  </li>
+                }
+              </ul>
+            </div>
           }
-        </ul>
+        </div>
 
         <div class="card__links">
           <a class="card__link" [href]="project.github" target="_blank" rel="noopener noreferrer">

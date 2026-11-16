@@ -113,7 +113,7 @@
   transform: translateY(calc(var(--preview-offset, 0px) + 8px));
   transition:
     opacity 0.25s,
-    transform 0.25s;
+    transform 0.55s cubic-bezier(0.34, 1.4, 0.64, 1);
 
   &::before {
     content: '';
@@ -129,7 +129,18 @@
 
 .preview--visible {
   opacity: 1;
-  transform: translateY(var(--preview-offset, 0px));
+  transform: translateY(var(--preview-offset, 0px)) rotate(var(--preview-tilt, 0deg));
+}
+
+.preview__image--enter {
+  animation: preview-in 0.35s ease-out;
+}
+
+@keyframes preview-in {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
 }
 
 .preview__image {

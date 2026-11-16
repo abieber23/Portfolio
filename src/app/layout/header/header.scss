@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 24px var(--page-gutter);
+  padding: 24px max(var(--page-gutter), calc((100% - 1440px) / 2 + var(--page-gutter)));
 }
 
 .header__left {
@@ -39,7 +39,8 @@
       transition: transform 0.25s;
     }
 
-    &:hover {
+    &:hover,
+    &.active {
       color: var(--color-accent);
 
       &::after {
@@ -142,9 +143,22 @@
     color: var(--color-text);
     text-decoration: none;
 
-    &:hover {
+    &:hover,
+    &.active {
       color: var(--color-accent);
     }
+  }
+}
+
+/* Menu entries slide in one after another each time the menu opens. */
+.mobile-menu--open .mobile-menu__item {
+  animation: menu-item-in 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) calc(0.1s + var(--i, 0) * 70ms) backwards;
+}
+
+@keyframes menu-item-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
   }
 }
 

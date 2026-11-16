@@ -1,8 +1,16 @@
 @let t = language.texts().hero;
 
-<section id="top" class="hero">
+<section #hero id="top" class="hero">
   <div class="hero__content">
-    <p class="hero__role">{{ t.role }}</p>
+    <p class="hero__role">
+      <span class="visually-hidden">{{ t.role }}</span>
+      <!-- The invisible full text reserves the width, the typed text is drawn on top of it. -->
+      <span class="hero__role-box" aria-hidden="true">
+        <span class="hero__role-ghost">{{ t.role }}</span>
+        <!-- prettier-ignore -->
+        <span class="hero__role-typed">{{ typedRole() }}<span class="hero__caret" [class.hero__caret--done]="typingDone()"></span></span>
+      </span>
+    </p>
     <h1 class="hero__name">{{ profile.firstName }} {{ profile.lastName }}</h1>
     <div class="hero__actions">
       <a href="#projects" class="btn">{{ t.checkWork }}</a>

@@ -1,5 +1,7 @@
 import { Component, ElementRef, inject, signal, viewChild } from '@angular/core';
 import { LanguageService } from '../../core/language.service';
+import { Parallax } from '../../shared/parallax/parallax';
+import { Reveal } from '../../shared/reveal/reveal';
 
 interface Skill {
   name: string;
@@ -8,6 +10,7 @@ interface Skill {
 
 @Component({
   selector: 'app-skills',
+  imports: [Reveal, Parallax],
   templateUrl: './skills.html',
   styleUrl: './skills.scss',
   host: {

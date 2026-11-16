@@ -16,18 +16,44 @@
   }
 
   &[open] {
+    display: grid;
+    overflow-x: hidden;
     animation: dialog-in 0.25s ease-out;
   }
 }
 
+/* Old and new card share one grid cell while "next project" swaps them. */
 .card {
   position: relative;
+  grid-area: 1 / 1;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 520px);
   align-items: center;
   gap: 64px;
   padding: 88px 80px 64px;
-  animation: fade-in 0.3s ease-out;
+}
+
+.card--enter {
+  animation: card-in 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.card--leave {
+  pointer-events: none;
+  animation: card-out 0.3s ease-in forwards;
+}
+
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateX(80px);
+  }
+}
+
+@keyframes card-out {
+  to {
+    opacity: 0;
+    transform: translateX(-80px);
+  }
 }
 
 .card__close {
@@ -80,6 +106,18 @@
   font-size: clamp(20px, 1.7vw, 24px);
   font-weight: 700;
   color: var(--color-accent);
+}
+
+.card__stack {
+  display: grid;
+}
+
+.card__variant {
+  grid-area: 1 / 1;
+}
+
+.card__variant--hidden {
+  visibility: hidden;
 }
 
 .card__description {
@@ -212,18 +250,6 @@
   }
 }
 
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .dialog[open],
-  .card {
-    animation: none;
-  }
-}
 
 @media (max-width: 960px) {
   .card {

@@ -1,11 +1,12 @@
 import { Component, ElementRef, computed, inject, signal, viewChild } from '@angular/core';
 import { LanguageService } from '../../core/language.service';
+import { Reveal } from '../../shared/reveal/reveal';
 import { Project } from './project';
 import { ProjectDialog } from './project-dialog/project-dialog';
 
 @Component({
   selector: 'app-projects',
-  imports: [ProjectDialog],
+  imports: [ProjectDialog, Reveal],
   templateUrl: './projects.html',
   styleUrl: './projects.scss',
 })
@@ -44,7 +45,15 @@ export class Projects {
     const index = this.activeIndex();
     return index === null ? null : this.projects[index];
   });
+  /** The hovered project as a list, so a new project re-creates the image and plays its enter animation. */
+  protected readonly previewItems = computed(() => {
+    const project = this.activeProject();
+    return project ? [project] : [];
+  });
   protected readonly previewOffset = signal(0);
+  /** Short tilt in the direction the preview moves (rows below → positive), reset after the move. */
+  protected readonly previewTilt = signal(0);
+  private tiltTimer?: ReturnType<typeof setTimeout>;
 
   protected readonly openIndex = signal<number | null>(null);
   protected readonly openProject = computed(() => {
@@ -54,10 +63,18 @@ export class Projects {
 
   private readonly preview = viewChild.required<ElementRef<HTMLElement>>('preview');
 
-  /** Shows the hover preview for a project, vertically centered next to its row. */
+  /** Shows the hover preview for a project, vertically centered next to its row; tilts it while it travels. */
   protected activate(index: number, row: HTMLElement): void {
     const rowCenter = row.offsetTop + row.offsetHeight / 2;
-    this.previewOffset.set(rowCenter - this.preview().nativeElement.offsetHeight / 2);
+    const offset = rowCenter - this.preview().nativeElement.offsetHeight / 2;
+    const previous = this.activeIndex();
+
+    if (previous !== null && previous !== index) {
+      this.previewTilt.set(Math.sign(offset - this.previewOffset()) * 4);
+      clearTimeout(this.tiltTimer);
+      this.tiltTimer = setTimeout(() => this.previewTilt.set(0), 250);
+    }
+    this.previewOffset.set(offset);
     this.activeIndex.set(index);
   }
 

@@ -13,6 +13,8 @@ export class ProjectDialog {
 
   readonly project = input<Project | null>(null);
   readonly number = input(1);
+  /** All projects; their texts are stacked invisibly so the card keeps the same height for each project. */
+  readonly projects = input<Project[]>([]);
 
   protected readonly shown = computed(() => {
     const project = this.project();

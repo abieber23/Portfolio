@@ -6,9 +6,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  /* --mx/--my (-1…1, mouse) and --scroll (px) are set by hero.ts for the parallax. */
   background:
-    radial-gradient(ellipse 60% 55% at 100% 0%, rgba(14, 92, 72, 0.85), transparent 70%),
-    radial-gradient(ellipse 45% 60% at 90% 45%, rgba(14, 92, 72, 0.45), transparent 75%),
+    radial-gradient(
+      ellipse 60% 55% at calc(100% + var(--mx, 0) * 6%) calc(var(--my, 0) * 6%),
+      rgba(14, 92, 72, 0.85),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 45% 60% at calc(90% - var(--mx, 0) * 4%) calc(45% - var(--my, 0) * 4%),
+      rgba(14, 92, 72, 0.45),
+      transparent 75%
+    ),
     linear-gradient(180deg, rgba(0, 0, 0, 0.35), transparent 18%),
     var(--color-bg);
 }
@@ -22,6 +31,8 @@
   padding: 0 var(--page-gutter);
   margin-top: -6vh;
   text-align: center;
+  opacity: calc(1 - var(--scroll, 0) / 700);
+  transform: translateY(calc(var(--scroll, 0) * 0.35px));
 }
 
 .hero__role {
@@ -32,6 +43,52 @@
   color: var(--color-text);
 }
 
+.hero__role-box {
+  display: inline-grid;
+}
+
+.hero__role-ghost,
+.hero__role-typed {
+  grid-area: 1 / 1;
+}
+
+.hero__role-ghost {
+  visibility: hidden;
+}
+
+.hero__role-typed {
+  justify-self: start;
+  text-align: left;
+}
+
+.hero__caret {
+  display: inline-block;
+  width: 3px;
+  height: 0.9em;
+  margin-left: 4px;
+  vertical-align: -0.1em;
+  background: var(--color-accent);
+  animation: caret-blink 0.9s steps(1) infinite;
+}
+
+.hero__caret--done {
+  animation:
+    caret-blink 0.9s steps(1) 3,
+    fade-out 0.4s 2.7s forwards;
+}
+
+@keyframes caret-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
 .hero__name {
   margin: 0;
   font-family: var(--font-sans);
@@ -39,6 +96,15 @@
   font-weight: 700;
   line-height: 1.1;
   color: var(--color-name);
+  animation: name-in 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) 0.15s backwards;
+}
+
+@keyframes name-in {
+  from {
+    opacity: 0;
+    filter: blur(14px);
+    transform: translateY(30px) scale(0.96);
+  }
 }
 
 .hero__actions {
@@ -47,6 +113,20 @@
   justify-content: center;
   gap: 48px;
   margin-top: 48px;
+  animation: rise-in 0.8s ease-out 1.4s backwards;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
 }
 
 .btn {
@@ -77,20 +157,29 @@
   flex-direction: column;
   align-items: center;
   gap: 24px;
+  animation: fade-in 0.8s ease-out 1.7s backwards;
 }
 
 .hero__side--left {
-  left: var(--page-gutter);
+  left: max(var(--page-gutter), calc((100% - 1440px) / 2 + var(--page-gutter)));
 }
 
 .hero__side--right {
-  right: var(--page-gutter);
+  right: max(var(--page-gutter), calc((100% - 1440px) / 2 + var(--page-gutter)));
 }
 
 .hero__line {
   width: 1px;
   height: 25vh;
   background: var(--color-accent);
+  transform-origin: bottom;
+  animation: line-grow 1s cubic-bezier(0.2, 0.7, 0.2, 1) 1.8s backwards;
+}
+
+@keyframes line-grow {
+  from {
+    transform: scaleY(0);
+  }
 }
 
 .scroll-down {
@@ -153,6 +242,7 @@
   cursor: pointer;
   user-select: none;
   touch-action: pan-y;
+  animation: fade-in 1s ease-out 2s backwards;
 }
 
 .marquee--dragging {
@@ -189,12 +279,6 @@
       border-radius: 50%;
       background: var(--color-accent);
     }
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .scroll-down {
-    animation: none;
   }
 }
 

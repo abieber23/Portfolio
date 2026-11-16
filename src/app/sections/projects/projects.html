@@ -1,15 +1,16 @@
 @let t = language.texts().projects;
 
 <section id="projects" class="projects">
-  <p class="projects__label">{{ t.label }}</p>
-  <h2 class="projects__heading">{{ t.heading }}</h2>
-  <p class="projects__intro">{{ t.intro }}</p>
+  <p class="projects__label" appReveal>{{ t.label }}</p>
+  <h2 class="projects__heading" appReveal [revealDelay]="100">{{ t.heading }}</h2>
+  <p class="projects__intro" appReveal [revealDelay]="200">{{ t.intro }}</p>
 
   <div class="projects__body">
-    <ul class="projects__list" (mouseleave)="activeIndex.set(null)">
+    <ul class="projects__list" appReveal="stagger" [revealDelay]="250" (mouseleave)="activeIndex.set(null)">
       @for (project of projects; track project.name; let i = $index) {
         <li
-          class="project"
+          class="project reveal-item"
+          [style.--i]="i"
           [class.project--active]="activeIndex() === i"
           tabindex="0"
           role="button"
@@ -45,12 +46,20 @@
       class="preview"
       [class.preview--visible]="activeProject()"
       [style.--preview-offset.px]="previewOffset()"
+      [style.--preview-tilt.deg]="previewTilt()"
     >
-      @if (activeProject(); as project) {
+      @for (project of previewItems(); track project.key) {
         @if (project.image) {
-          <img class="preview__image" [src]="project.image" [alt]="t.previewOf + ' ' + project.name" />
+          <img
+            class="preview__image"
+            animate.enter="preview__image--enter"
+            [src]="project.image"
+            [alt]="t.previewOf + ' ' + project.name"
+          />
         } @else {
-          <div class="preview__image preview__image--placeholder">{{ project.name }}</div>
+          <div class="preview__image preview__image--placeholder" animate.enter="preview__image--enter">
+            {{ project.name }}
+          </div>
         }
       }
     </div>
@@ -58,6 +67,7 @@
 
   <app-project-dialog
     [project]="openProject()"
+    [projects]="projects"
     [number]="(openIndex() ?? 0) + 1"
     (closed)="openIndex.set(null)"
     (next)="openNext()"

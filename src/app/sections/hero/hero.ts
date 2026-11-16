@@ -7,11 +7,20 @@ const AUTO_SPEED = 0.16;
 const FRICTION = 0.95;
 const MAX_VELOCITY = 3;
 
+/** Typewriter: pause before the first letter and time per letter (ms). */
+const TYPE_START = 600;
+const TYPE_STEP = 75;
+/** How fast the mouse parallax follows the pointer (share of the remaining distance per frame). */
+const PARALLAX_EASE = 0.06;
+
 @Component({
   selector: 'app-hero',
   imports: [SocialLinks],
   templateUrl: './hero.html',
   styleUrl: './hero.scss',
+  host: {
+    '(pointermove)': 'onHeroPointerMove($event)',
+  },
 })
 export class Hero {
   protected readonly language = inject(LanguageService);
@@ -23,6 +32,12 @@ export class Hero {
     return [...items, ...items];
   });
 
+  /** Number of typed letters of the role; Infinity once finished, so a language switch shows the full text. */
+  private readonly typed = signal(0);
+  protected readonly typedRole = computed(() => this.language.texts().hero.role.slice(0, this.typed()));
+  protected readonly typingDone = computed(() => this.typed() === Infinity);
+
+  private readonly hero = viewChild.required<ElementRef<HTMLElement>>('hero');
   private readonly track = viewChild.required<ElementRef<HTMLElement>>('track');
   private offset = 0;
   private velocity = 0;
@@ -30,12 +45,19 @@ export class Hero {
   private lastX = 0;
   private lastMoveTime = 0;
 
-  /** Starts the marquee animation loop after the first render (auto-scroll + release momentum). */
+  /** Pointer position over the hero, -1…1 from the center (target) and the eased value that is rendered. */
+  private pointer = { x: 0, y: 0 };
+  private eased = { x: 0, y: 0 };
+  private lastScroll = -1;
+
+  /** Starts the typewriter and the animation loop (marquee auto-scroll + momentum, mouse/scroll parallax). */
   constructor() {
     const destroyRef = inject(DestroyRef);
 
     afterNextRender(() => {
       const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      this.startTypewriter(reduceMotion, destroyRef);
+
       let last = performance.now();
       let frame = 0;
 
@@ -53,12 +75,57 @@ export class Hero {
         }
 
         this.renderMarquee();
+        if (!reduceMotion) this.renderParallax();
         frame = requestAnimationFrame(tick);
       };
 
       frame = requestAnimationFrame(tick);
       destroyRef.onDestroy(() => cancelAnimationFrame(frame));
     });
+  }
+
+  /** Remembers the mouse position over the hero for the parallax (touch is ignored). */
+  protected onHeroPointerMove(event: PointerEvent): void {
+    if (event.pointerType !== 'mouse') return;
+    this.pointer = {
+      x: (event.clientX / innerWidth) * 2 - 1,
+      y: (event.clientY / innerHeight) * 2 - 1,
+    };
+  }
+
+  /** Types the role letter by letter; shows it at once when the visitor prefers reduced motion. */
+  private startTypewriter(reduceMotion: boolean, destroyRef: DestroyRef): void {
+    if (reduceMotion) {
+      this.typed.set(Infinity);
+      return;
+    }
+    const step = () => {
+      const count = this.typed() + 1;
+      const done = count >= this.language.texts().hero.role.length;
+      this.typed.set(done ? Infinity : count);
+      if (!done) timer = setTimeout(step, TYPE_STEP);
+    };
+    let timer = setTimeout(step, TYPE_START);
+    destroyRef.onDestroy(() => clearTimeout(timer));
+  }
+
+  /** Eases toward the pointer and writes pointer + scroll offsets as CSS variables (only when they change). */
+  private renderParallax(): void {
+    const style = this.hero().nativeElement.style;
+    const dx = this.pointer.x - this.eased.x;
+    const dy = this.pointer.y - this.eased.y;
+    if (Math.abs(dx) > 0.001 || Math.abs(dy) > 0.001) {
+      this.eased.x += dx * PARALLAX_EASE;
+      this.eased.y += dy * PARALLAX_EASE;
+      style.setProperty('--mx', this.eased.x.toFixed(3));
+      style.setProperty('--my', this.eased.y.toFixed(3));
+    }
+
+    const scroll = Math.min(scrollY, innerHeight);
+    if (scroll !== this.lastScroll) {
+      this.lastScroll = scroll;
+      style.setProperty('--scroll', scroll.toFixed(0));
+    }
   }
 
   /** Pauses the auto-scroll while a mouse hovers the marquee. */

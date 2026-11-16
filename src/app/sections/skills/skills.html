@@ -1,9 +1,9 @@
 @let t = language.texts().skills;
 
 <section id="skills" class="skills">
-  <div class="skills__text">
-    <p class="skills__label">{{ t.label }}</p>
-    <div class="skills__card">
+  <div class="skills__text" [appParallax]="0.12">
+    <p class="skills__label" appReveal="left">{{ t.label }}</p>
+    <div class="skills__card" appReveal="left" [revealDelay]="120">
       <h2 class="skills__heading">{{ t.heading }}</h2>
       <p class="skills__intro">{{ t.intro }}</p>
       <h3 class="skills__another">
@@ -14,15 +14,15 @@
     </div>
   </div>
 
-  <ul class="skills__grid">
+  <ul class="skills__grid" appReveal="stagger">
     @for (skill of skills; track skill.name) {
-      <li class="skill">
+      <li class="skill reveal-item reveal-item--pop" [style.--i]="$index">
         <img class="skill__icon" [src]="'img/skills/' + skill.icon" alt="" width="60" height="60" />
         <span>{{ skill.name }}</span>
       </li>
     }
 
-    <li #growth class="skill skill--growth">
+    <li #growth class="skill skill--growth reveal-item reveal-item--pop" [style.--i]="skills.length">
       @if (learningOpen()) {
         <div id="learning-popup" class="learning">
           <p>{{ t.learningInterest }}</p>

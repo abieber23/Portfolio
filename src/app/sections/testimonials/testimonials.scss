@@ -4,6 +4,8 @@
   --side-scale: 0.91;
   --step: calc(var(--card-width) * (1 + var(--side-scale)) / 2 + var(--card-gap));
 
+  max-width: 1440px;
+  margin-inline: auto;
   padding: 80px 0 112px;
   overflow-x: clip;
 }
@@ -24,6 +26,7 @@
   position: relative;
   display: grid;
   padding: var(--stage-top) 0 24px;
+  touch-action: pan-y;
 }
 
 .testimonials__quote {

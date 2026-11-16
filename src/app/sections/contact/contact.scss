@@ -74,6 +74,10 @@
     border-bottom-color: var(--color-accent);
     box-shadow: 0 -1px 0 var(--color-accent);
   }
+
+  &.field--error {
+    animation: shake 0.4s ease-in-out;
+  }
 }
 
 .field__label {
@@ -128,6 +132,22 @@
   color: var(--color-error);
 }
 
+.privacy__error span {
+  display: inline-block;
+}
+
+.field__error--enter,
+.privacy__error span {
+  animation: error-in 0.3s ease-out;
+}
+
+@keyframes error-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
 .privacy {
   margin-top: 46px;
 }
@@ -139,6 +159,10 @@
   font-size: 16px;
   line-height: 1.3;
   cursor: pointer;
+}
+
+.privacy__label--shake {
+  animation: shake 0.4s ease-in-out;
 }
 
 .privacy__checkbox {
@@ -187,6 +211,9 @@
 }
 
 .form__submit {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   align-self: center;
   margin-top: 16px;
   padding: 12px 23px;
@@ -212,6 +239,52 @@
   &:disabled {
     opacity: 0.6;
     cursor: not-allowed;
+  }
+}
+
+.form__spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Success check: circle and tick are "drawn" by animating the stroke offset. */
+.form__check {
+  display: block;
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 12px;
+  fill: none;
+  stroke: var(--color-accent);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+
+  circle {
+    --length: 151;
+    stroke-dasharray: 151;
+    animation: draw 0.6s ease-out backwards;
+  }
+
+  path {
+    --length: 36;
+    stroke-dasharray: 36;
+    animation: draw 0.4s ease-out 0.5s backwards;
+  }
+}
+
+@keyframes draw {
+  from {
+    stroke-dashoffset: var(--length);
   }
 }
 

@@ -1,19 +1,19 @@
 @let t = language.texts().about;
 
 <section id="about" class="about">
-  <div class="about__photo-wrap">
+  <div class="about__photo-wrap" appReveal="left" [appParallax]="0.08">
     <img class="about__photo" src="img/skills/profile_img.JPG" [alt]="t.photoAlt" />
   </div>
 
   <div class="about__text">
-    <p class="about__label">{{ t.label }}</p>
-    <div class="about__card">
+    <p class="about__label" appReveal="right">{{ t.label }}</p>
+    <div class="about__card" appReveal="right" [revealDelay]="120">
       <h2 class="about__heading">{{ t.heading }}</h2>
       <p class="about__intro">{{ t.intro }}</p>
 
       <ul class="about__points">
         @for (point of t.points; track $index) {
-          <li>
+          <li appReveal [revealDelay]="300 + $index * 120">
             <img class="about__icon" [src]="'img/skills/about_me_icon_' + ($index + 1) + '.png'" alt="" />
             <span>{{ point }}</span>
           </li>

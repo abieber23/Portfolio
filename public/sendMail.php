@@ -43,6 +43,7 @@ $message = $field('message');
 
 if (
     $name === '' || mb_strlen($name) > 100 ||
+    !preg_match("/^(?=(?:.*\\p{L}){2})[\\p{L}\\p{M}]+(?:[ '’.-]+[\\p{L}\\p{M}]+)*\\.?$/u", $name) ||
     !filter_var($email, FILTER_VALIDATE_EMAIL) || mb_strlen($email) > 254 ||
     $message === '' || mb_strlen($message) > 5000
 ) {

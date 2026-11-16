@@ -1,9 +1,16 @@
 @let t = language.texts().testimonials;
 
 <section class="testimonials">
-  <h2 class="testimonials__heading">{{ t.heading }}</h2>
+  <h2 class="testimonials__heading" appReveal>{{ t.heading }}</h2>
 
-  <div class="testimonials__stage">
+  <div
+    class="testimonials__stage"
+    appReveal
+    [revealDelay]="150"
+    (pointerdown)="onSwipeStart($event)"
+    (pointerup)="onSwipeEnd($event)"
+    (pointercancel)="onSwipeEnd($event)"
+  >
     <img class="testimonials__quote" src="img/skills/quotes.png" alt="" />
 
     @for (slot of slots(); track slot.key) {
@@ -25,7 +32,7 @@
     }
   </div>
 
-  <div class="controls">
+  <div class="controls" appReveal [revealDelay]="300">
     <button type="button" class="controls__arrow" [attr.aria-label]="t.previous" (click)="previous()">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12H4m7-7-7 7 7 7" /></svg>
     </button>

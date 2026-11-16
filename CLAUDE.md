@@ -28,6 +28,11 @@ job applications as a frontend developer. The user communicates in **German** �
 - Design tokens live in `src/styles.scss` (`--color-*`, `--font-*`, `--page-gutter`); global helper
   `.visually-hidden`.
 - Minimum font size on the whole site is **16px**.
+- Animations: scroll entrances via `shared/reveal` (`appReveal` = up/left/right/pop/stagger; stagger children get
+  `.reveal-item` + `--i`), scroll parallax via `shared/parallax` (writes `--parallax`), element swaps via Angular's
+  `animate.enter`/`animate.leave`. Keyframes for reveal/shake live in `styles.scss`. Use CSS animations (not
+  transitions) for entrances so element transitions keep working. `prefers-reduced-motion` is handled globally in
+  `styles.scss` (animations shortened to 1ms) plus JS checks in hero/parallax/testimonials.
 - Section look: accent label (23px) → mono heading `clamp(40px, 4.5vw, 64px)` → 18px intro; cards
   with 1px accent border, 30px radius, `--color-card` background; pill buttons with white border.
 - Responsive down to **325px**. Breakpoints: 1100 / 960 / 768 / 480px (`max-width` media queries at
