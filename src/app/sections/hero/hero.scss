@@ -69,8 +69,6 @@
   }
 }
 
-/* ---------- side columns ---------- */
-
 .hero__side {
   position: absolute;
   bottom: 0;
@@ -140,15 +138,11 @@
   flex-direction: column;
 }
 
-/* ---------- marquee band ---------- */
-
 .marquee {
   position: absolute;
   left: -5%;
   right: -5%;
-  /* the -3deg tilt drops the left end by ~2.6% of the viewport width, so the gap grows with it */
   bottom: calc(24px + 2.7vw);
-  /* above the side lines, which show through blurred like frosted glass */
   z-index: 4;
   overflow: hidden;
   padding: 18px 0;
@@ -158,7 +152,6 @@
   transform: rotate(-3deg);
   cursor: pointer;
   user-select: none;
-  /* horizontal drag moves the band, vertical swipe still scrolls the page */
   touch-action: pan-y;
 }
 
@@ -166,7 +159,6 @@
   cursor: grabbing;
 }
 
-/* moved by Hero (auto-scroll + drag) */
 .marquee__track {
   display: flex;
   width: max-content;
@@ -205,8 +197,6 @@
     animation: none;
   }
 }
-
-/* ---------- mobile ---------- */
 
 @media (max-width: 768px) {
   .hero__actions {

@@ -8,9 +8,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(
       routes,
       withComponentInputBinding(),
-      // scroll to #fragments (also when coming from another page) and to the top on page change
       withInMemoryScrolling({ anchorScrolling: 'enabled', scrollPositionRestoration: 'enabled' }),
-      // clicking the same nav link twice should scroll again
       withRouterConfig({ onSameUrlNavigation: 'reload' }),
     ),
   ],

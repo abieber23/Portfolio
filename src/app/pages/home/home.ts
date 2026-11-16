@@ -23,6 +23,7 @@ import { Testimonials } from '../../sections/testimonials/testimonials';
   `,
 })
 export class Home {
+  /** Sets the browser tab title of the homepage. */
   constructor() {
     inject(Title).setTitle(PAGE_TITLE);
   }

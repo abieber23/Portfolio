@@ -2,7 +2,6 @@ import { Component, ElementRef, computed, effect, inject, input, output, viewChi
 import { LanguageService } from '../../../core/language.service';
 import { Project, TECH_ICONS } from '../project';
 
-/** Native <dialog> (focus trap, Esc, backdrop) showing the details of one project. */
 @Component({
   selector: 'app-project-dialog',
   templateUrl: './project-dialog.html',
@@ -12,11 +11,9 @@ export class ProjectDialog {
   protected readonly language = inject(LanguageService);
   protected readonly techIcons = TECH_ICONS;
 
-  /** Open while a project is set. */
   readonly project = input<Project | null>(null);
   readonly number = input(1);
 
-  /** List of zero or one project, rendered with @for so each project gets a fresh card. */
   protected readonly shown = computed(() => {
     const project = this.project();
     return project ? [project] : [];
@@ -27,6 +24,7 @@ export class ProjectDialog {
 
   private readonly dialog = viewChild.required<ElementRef<HTMLDialogElement>>('dialog');
 
+  /** Opens the native dialog as a modal while a project is set and closes it otherwise. */
   constructor() {
     effect(() => {
       const dialog = this.dialog().nativeElement;
@@ -35,11 +33,12 @@ export class ProjectDialog {
     });
   }
 
+  /** Closes the dialog; its close event then notifies the parent. */
   protected close(): void {
     this.dialog().nativeElement.close();
   }
 
-  /** The card fills the whole dialog, so a click on the dialog element itself hit the backdrop. */
+  /** Closes the dialog on a backdrop click (a click that hits the dialog element itself). */
   protected onDialogClick(event: MouseEvent): void {
     if (event.target === event.currentTarget) this.close();
   }

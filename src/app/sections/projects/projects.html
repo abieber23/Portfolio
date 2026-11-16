@@ -50,7 +50,6 @@
         @if (project.image) {
           <img class="preview__image" [src]="project.image" [alt]="t.previewOf + ' ' + project.name" />
         } @else {
-          <!-- fallback for projects without a screenshot -->
           <div class="preview__image preview__image--placeholder">{{ project.name }}</div>
         }
       }

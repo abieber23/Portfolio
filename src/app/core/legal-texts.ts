@@ -1,15 +1,8 @@
 import { PROFILE } from './profile';
 import { Lang } from './translations';
 
-/*
- * PROVISIONAL legal texts – they are a starting point, not legal advice.
- * Fill in the [placeholders] and have them checked (e.g. with a generator like
- * e-recht24.de or by a lawyer) before the site goes live.
- */
-
 export interface LegalSection {
   heading: string;
-  /** Paragraphs; line breaks inside a paragraph are kept (used for addresses). */
   paragraphs: string[];
 }
 

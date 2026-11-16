@@ -57,8 +57,6 @@
   }
 }
 
-/* ---------- text column ---------- */
-
 .card__number {
   margin: 0;
   font-family: var(--font-sans);
@@ -107,7 +105,6 @@
   }
 }
 
-/* icon PNG as a mask, so every logo takes the accent color like in the design */
 .card__tech-icon {
   width: 24px;
   height: 24px;
@@ -152,8 +149,6 @@
     background-color: rgba(61, 207, 182, 0.08);
   }
 }
-
-/* ---------- image + next ---------- */
 
 .card__media {
   display: flex;

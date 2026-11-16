@@ -1,13 +1,8 @@
 <?php
-/**
- * Contact form endpoint. Receives JSON { name, email, message, website } via POST
- * and forwards it to RECIPIENT with PHP's mail(). Responds with JSON { ok: bool }.
- */
 
 declare(strict_types=1);
 
 const RECIPIENT = 'adrianbieber2@gmail.com';
-// must be an address on the own domain, otherwise the mail is likely rejected as spoofed
 const SENDER = 'noreply@adrian-bieber-portfolio.de';
 const ALLOWED_HOSTS = ['adrian-bieber-portfolio.de', 'www.adrian-bieber-portfolio.de'];
 
@@ -26,7 +21,6 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     respond(405, false);
 }
 
-// only accept requests coming from the own site
 $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
 if ($origin !== '' && !in_array(parse_url($origin, PHP_URL_HOST), ALLOWED_HOSTS, true)) {
     respond(403, false);
@@ -39,12 +33,10 @@ if (!is_array($data)) {
 
 $field = static fn (string $key): string => is_string($data[$key] ?? null) ? trim($data[$key]) : '';
 
-// honeypot: humans never see this field, bots fill it -> pretend success, send nothing
 if ($field('website') !== '') {
     respond(200, true);
 }
 
-// no line breaks in the name, it goes into the subject header
 $name = preg_replace('/[\r\n]+/', ' ', $field('name'));
 $email = $field('email');
 $message = $field('message');

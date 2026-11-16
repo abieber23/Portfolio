@@ -3,9 +3,7 @@ import { LanguageService } from '../../core/language.service';
 import { PROFILE } from '../../core/profile';
 import { SocialLinks } from '../../shared/social-links/social-links';
 
-/** Auto-scroll speed of the marquee in px per ms. */
 const AUTO_SPEED = 0.16;
-/** Per-frame (16 ms) factor the release momentum decays by. */
 const FRICTION = 0.95;
 const MAX_VELOCITY = 3;
 
@@ -20,7 +18,6 @@ export class Hero {
   protected readonly profile = PROFILE;
   protected readonly dragging = signal(false);
 
-  /** Items repeated so one marquee group is always wider than the viewport. */
   protected readonly marqueeItems = computed(() => {
     const items = this.language.texts().hero.marquee;
     return [...items, ...items];
@@ -33,6 +30,7 @@ export class Hero {
   private lastX = 0;
   private lastMoveTime = 0;
 
+  /** Starts the marquee animation loop after the first render (auto-scroll + release momentum). */
   constructor() {
     const destroyRef = inject(DestroyRef);
 
@@ -63,14 +61,17 @@ export class Hero {
     });
   }
 
+  /** Pauses the auto-scroll while a mouse hovers the marquee. */
   protected onPointerEnter(event: PointerEvent): void {
     if (event.pointerType === 'mouse') this.hovering = true;
   }
 
+  /** Resumes the auto-scroll when the pointer leaves the marquee. */
   protected onPointerLeave(): void {
     this.hovering = false;
   }
 
+  /** Starts dragging the marquee and captures the pointer. */
   protected onPointerDown(event: PointerEvent): void {
     (event.currentTarget as HTMLElement).setPointerCapture(event.pointerId);
     this.dragging.set(true);
@@ -79,6 +80,7 @@ export class Hero {
     this.lastMoveTime = event.timeStamp;
   }
 
+  /** Moves the marquee with the pointer and tracks the velocity for the release fling. */
   protected onPointerMove(event: PointerEvent): void {
     if (!this.dragging()) return;
     const dx = event.clientX - this.lastX;
@@ -89,13 +91,14 @@ export class Hero {
     this.lastMoveTime = event.timeStamp;
   }
 
+  /** Ends dragging; drops the momentum if the pointer was held still before release. */
   protected onPointerUp(event: PointerEvent): void {
     if (!this.dragging()) return;
     this.dragging.set(false);
-    // pointer held still before release – no fling
     if (event.timeStamp - this.lastMoveTime > 100) this.velocity = 0;
   }
 
+  /** Wraps the offset into one item group and applies it to the track, so the loop is seamless. */
   private renderMarquee(): void {
     const track = this.track().nativeElement;
     const groupWidth = track.offsetWidth / 2;

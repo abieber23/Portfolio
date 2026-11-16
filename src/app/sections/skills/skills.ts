@@ -34,10 +34,12 @@ export class Skills {
 
   private readonly growth = viewChild.required<ElementRef<HTMLElement>>('growth');
 
+  /** Opens or closes the "currently learning" popup. */
   protected toggleLearning(): void {
     this.learningOpen.update((open) => !open);
   }
 
+  /** Closes the learning popup on a click anywhere outside of it. */
   protected onDocumentClick(event: MouseEvent): void {
     if (!this.growth().nativeElement.contains(event.target as Node)) {
       this.learningOpen.set(false);

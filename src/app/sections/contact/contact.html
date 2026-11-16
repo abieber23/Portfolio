@@ -13,7 +13,6 @@
   </div>
 
   <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
-    <!-- a required error replaces the placeholder, so showing it never shifts the layout -->
     <label class="field" [class.field--error]="showError('name')">
       <span class="field__label">{{ t.nameLabel }}</span>
       <input
@@ -64,12 +63,10 @@
         <input class="privacy__checkbox" type="checkbox" formControlName="privacy" />
         <span>
           {{ t.privacyBefore }}
-          <!-- new tab, so a half-filled form isn't lost -->
           <a class="privacy__link" routerLink="/privacy-policy" target="_blank">{{ t.privacyLink }}</a>
           {{ t.privacyAfter }}
         </span>
       </label>
-      <!-- line is always reserved so the message doesn't push the button down -->
       <p class="privacy__error" aria-live="polite">
         @if (showError('privacy')) {
           {{ t.privacyRequired }}
@@ -77,7 +74,6 @@
       </p>
     </div>
 
-    <!-- honeypot, see contact.ts -->
     <input class="form__honeypot" type="text" formControlName="website" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
     <button type="submit" class="form__submit" [disabled]="form.invalid || status() === 'sending'">

@@ -7,10 +7,6 @@ interface ChatMessage {
   text: string;
 }
 
-/**
- * PLACEHOLDER for the D-ID AI avatar: layout and styling are final, the chat only
- * answers locally with a fixed text until the D-ID integration is added.
- */
 @Component({
   selector: 'app-avatar',
   imports: [RouterLink],
@@ -20,16 +16,14 @@ interface ChatMessage {
 export class Avatar {
   protected readonly language = inject(LanguageService);
 
-  /** Conversation after the greeting (the greeting follows the selected language). */
   protected readonly messages = signal<ChatMessage[]>([]);
   protected readonly draft = signal('');
-  /** Consent gate: nothing may be loaded from D-ID before the visitor starts the avatar. */
   protected readonly started = signal(false);
 
   private readonly log = viewChild.required<ElementRef<HTMLElement>>('log');
 
+  /** Keeps the newest chat message in view after every new message. */
   constructor() {
-    // keep the newest message in view
     afterRenderEffect(() => {
       this.messages();
       const log = this.log().nativeElement;
@@ -37,11 +31,14 @@ export class Avatar {
     });
   }
 
+  /** Consent gate: starts the avatar – nothing may be loaded from D-ID before this. */
   protected start(): void {
     // TODO: load the D-ID SDK only now (dynamic import) and connect the agent
     this.started.set(true);
   }
 
+  /** Sends a question (typed or a suggestion) and adds it and the answer to the chat.
+   *  Currently answers with a fixed placeholder text. */
   protected send(text = this.draft()): void {
     const question = text.trim();
     if (!question || !this.started()) return;

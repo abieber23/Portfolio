@@ -5,7 +5,6 @@ import { LanguageService } from '../../core/language.service';
 import { LEGAL_TEXTS, LegalDocKey } from '../../core/legal-texts';
 import { PROFILE } from '../../core/profile';
 
-/** Renders the legal notice or the privacy policy – which one comes from the route data. */
 @Component({
   selector: 'app-legal',
   imports: [RouterLink],
@@ -19,6 +18,7 @@ export class Legal {
 
   protected readonly content = computed(() => LEGAL_TEXTS[this.language.lang()][this.doc()]);
 
+  /** Keeps the browser tab title in sync with the shown document and language. */
   constructor() {
     const title = inject(Title);
     effect(() => title.setTitle(`${this.content().title} – ${PROFILE.firstName} ${PROFILE.lastName}`));

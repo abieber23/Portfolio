@@ -1,7 +1,6 @@
 @let t = language.texts().projects;
 
 <dialog #dialog class="dialog" aria-labelledby="project-dialog-title" (close)="closed.emit()" (click)="onDialogClick($event)">
-  <!-- re-created on "next project", so its fade-in plays again -->
   @for (project of shown(); track project.key) {
     <div class="card">
       <button type="button" class="card__close" [attr.aria-label]="t.close" (click)="close()">
@@ -44,7 +43,6 @@
         @if (project.image) {
           <img class="card__image" [src]="project.image" [alt]="t.previewOf + ' ' + project.name" />
         } @else {
-          <!-- fallback for projects without a screenshot -->
           <div class="card__image card__image--placeholder">{{ project.name }}</div>
         }
 

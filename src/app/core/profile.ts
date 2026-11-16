@@ -10,5 +10,4 @@ export const PROFILE = {
   linkedin: 'https://www.linkedin.com/',
 } as const;
 
-/** Browser tab title of the homepage (same as in index.html). */
 export const PAGE_TITLE = `${PROFILE.firstName} ${PROFILE.lastName} – Frontend Developer`;

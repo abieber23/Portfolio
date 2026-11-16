@@ -40,12 +40,14 @@ job applications as a frontend developer. The user communicates in **German** �
 - `projects.ts`: Firebase icon missing
 - `legal-texts.ts`: log retention days `[X]` (from the all-inkl AVV), D-ID address
 - Contact form posts JSON to `public/sendMail.php` (PHP `mail()`, sender `noreply@adrian-bieber-portfolio.de`,
-  honeypot field `website`). PHP doesn't run on `ng serve` – test on the live server (all-inkl / kasserver).
+  honeypot field `website`). Verified working on the live server (all-inkl / kasserver); PHP doesn't run
+  on `ng serve`, so test changes there.
 
 ## AI avatar (D-ID) – planned
 
 Section `src/app/sections/avatar/` (between Skills and Projects). **Layout and styling are final;**
-only the D-ID connection is missing.
+only the D-ID connection is missing. **Currently hidden** via `:host { display: none; }` at the top of
+`avatar.scss` (postponed) – remove that rule when integrating.
 
 Requirements from the user:
 

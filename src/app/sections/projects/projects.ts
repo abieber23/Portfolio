@@ -12,7 +12,6 @@ import { ProjectDialog } from './project-dialog/project-dialog';
 export class Projects {
   protected readonly language = inject(LanguageService);
 
-  // Join and DA Bubble were group projects – their repos belong to teammates
   protected readonly projects: Project[] = [
     {
       key: 'join',
@@ -45,10 +44,8 @@ export class Projects {
     const index = this.activeIndex();
     return index === null ? null : this.projects[index];
   });
-  /** Vertical offset (px) that centers the preview next to the active row. */
   protected readonly previewOffset = signal(0);
 
-  /** Project shown in the dialog, null while it's closed. */
   protected readonly openIndex = signal<number | null>(null);
   protected readonly openProject = computed(() => {
     const index = this.openIndex();
@@ -57,16 +54,19 @@ export class Projects {
 
   private readonly preview = viewChild.required<ElementRef<HTMLElement>>('preview');
 
+  /** Shows the hover preview for a project, vertically centered next to its row. */
   protected activate(index: number, row: HTMLElement): void {
     const rowCenter = row.offsetTop + row.offsetHeight / 2;
     this.previewOffset.set(rowCenter - this.preview().nativeElement.offsetHeight / 2);
     this.activeIndex.set(index);
   }
 
+  /** Opens the detail dialog of a project. */
   protected open(index: number): void {
     this.openIndex.set(index);
   }
 
+  /** Switches the dialog to the next project, starting over after the last one. */
   protected openNext(): void {
     this.openIndex.update((index) => ((index ?? 0) + 1) % this.projects.length);
   }

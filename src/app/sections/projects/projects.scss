@@ -30,10 +30,7 @@
   text-align: justify;
 }
 
-/* ---------- list + preview ---------- */
-
 .projects__body {
-  /* offset parent for the rows, so their offsetTop lines up with the preview */
   position: relative;
   display: grid;
   grid-template-columns: minmax(0, 880px) 1fr;
@@ -106,23 +103,18 @@
   color: var(--color-accent);
 }
 
-/* ---------- hover preview ---------- */
-
 .preview {
   position: relative;
   align-self: start;
   width: 100%;
   max-width: 295px;
-  /* fixed height even while empty, so the centering math is right on first hover */
   aspect-ratio: 295 / 192;
   opacity: 0;
-  /* --preview-offset is set by Projects to center it on the hovered row */
   transform: translateY(calc(var(--preview-offset, 0px) + 8px));
   transition:
     opacity 0.25s,
     transform 0.25s;
 
-  /* striped backdrop peeking out right + bottom */
   &::before {
     content: '';
     position: absolute;
@@ -175,7 +167,6 @@
     padding: 64px var(--page-gutter) 80px;
   }
 
-  /* name on top, techs below – the row is too narrow for both side by side */
   .project {
     flex-direction: column;
     align-items: flex-start;
@@ -188,7 +179,6 @@
     text-align: left;
   }
 
-  /* no hover on touch devices – the arrow shows that the row opens something */
   .project__arrow {
     opacity: 1;
     transform: none;
@@ -201,7 +191,6 @@
     font-size: clamp(30px, 9vw, 40px);
   }
 
-  /* justified text leaves big word gaps in a narrow column */
   .projects__intro {
     text-align: left;
   }

@@ -54,8 +54,6 @@
   text-decoration: none;
 }
 
-/* ---------- burger + mobile menu ---------- */
-
 .burger {
   display: none;
   position: relative;
@@ -106,7 +104,6 @@
   }
 }
 
-/* keeps logo + close button visible above the menu even when scrolled down */
 .header--menu-open {
   position: fixed;
 }
@@ -169,7 +166,6 @@
     display: none;
   }
 
-  /* logo moves left, burger right */
   .header__left {
     display: contents;
   }

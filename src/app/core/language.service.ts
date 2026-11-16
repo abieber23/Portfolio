@@ -10,6 +10,7 @@ export class LanguageService {
   readonly lang = signal<Lang>(this.loadStoredLang());
   readonly texts = computed(() => TRANSLATIONS[this.lang()]);
 
+  /** Syncs the selected language to the `<html lang>` attribute and to localStorage. */
   constructor() {
     effect(() => {
       const lang = this.lang();
@@ -17,21 +18,21 @@ export class LanguageService {
       try {
         localStorage.setItem(STORAGE_KEY, lang);
       } catch {
-        // storage unavailable (private mode etc.) – language just isn't remembered
       }
     });
   }
 
+  /** Switches the UI language. */
   setLang(lang: Lang): void {
     this.lang.set(lang);
   }
 
+  /** Returns the language saved in localStorage, or English if none (or storage is unavailable). */
   private loadStoredLang(): Lang {
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored === 'en' || stored === 'de') return stored;
     } catch {
-      // fall through to default
     }
     return 'en';
   }

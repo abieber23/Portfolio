@@ -8,8 +8,6 @@
   padding: 104px calc(var(--page-gutter) + 5px) 80px;
 }
 
-/* ---------- text column ---------- */
-
 .contact__text {
   padding-top: 4px;
 }
@@ -55,8 +53,6 @@
   }
 }
 
-/* ---------- form ---------- */
-
 .form {
   display: flex;
   flex-direction: column;
@@ -73,7 +69,6 @@
   cursor: text;
   transition: border-color 0.2s;
 
-  /* the line above belongs to the previous field (or the form), so highlight both */
   &:focus-within,
   &.field--error {
     border-bottom-color: var(--color-accent);
@@ -108,7 +103,6 @@
     color: var(--color-error);
   }
 
-  /* keep the browser's autofill from painting a light box over the dark design */
   &:-webkit-autofill,
   &:-webkit-autofill:hover,
   &:-webkit-autofill:focus {
@@ -125,7 +119,6 @@
   field-sizing: content;
 }
 
-/* sits in the bottom padding, so it doesn't change the field's height */
 .field__error {
   position: absolute;
   left: 32px;
@@ -134,8 +127,6 @@
   line-height: 1.2;
   color: var(--color-error);
 }
-
-/* ---------- privacy checkbox ---------- */
 
 .privacy {
   margin-top: 46px;
@@ -195,8 +186,6 @@
   color: var(--color-error);
 }
 
-/* ---------- submit ---------- */
-
 .form__submit {
   align-self: center;
   margin-top: 16px;
@@ -226,7 +215,6 @@
   }
 }
 
-/* line is always reserved so the feedback doesn't shift the layout */
 .form__status {
   min-height: 1.3em;
   margin: 16px 0 0;
@@ -240,7 +228,6 @@
   color: var(--color-error);
 }
 
-/* off-screen instead of display:none – some bots skip hidden fields */
 .form__honeypot {
   position: absolute;
   left: -9999px;
@@ -274,7 +261,6 @@
   .contact__heading {
     margin-bottom: 32px;
     font-size: clamp(28px, 8.5vw, 40px);
-    /* "zusammenarbeiten" is wider than a small phone */
     overflow-wrap: break-word;
     hyphens: auto;
   }
@@ -287,7 +273,6 @@
     margin-top: 32px;
   }
 
-  /* label wraps over several lines – checkbox sits next to the first one */
   .privacy__label {
     align-items: flex-start;
   }

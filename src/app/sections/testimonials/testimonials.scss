@@ -2,7 +2,6 @@
   --card-width: min(632px, 78vw);
   --card-gap: 64px;
   --side-scale: 0.91;
-  /* distance between card centers: half active + gap + half scaled side card */
   --step: calc(var(--card-width) * (1 + var(--side-scale)) / 2 + var(--card-gap));
 
   padding: 80px 0 112px;
@@ -19,16 +18,11 @@
   color: var(--color-accent);
 }
 
-/* ---------- cards ---------- */
-
-/* all cards share one grid cell: the stage grows with the longest testimonial
-   and every card gets the same height */
 .testimonials__stage {
   --stage-top: 24px;
 
   position: relative;
   display: grid;
-  /* room for the side cards, which sit 24px lower */
   padding: var(--stage-top) 0 24px;
 }
 
@@ -42,7 +36,6 @@
   pointer-events: none;
 }
 
-/* cards are top-aligned so the active card's top edge (and the quote) never moves */
 .card {
   grid-area: 1 / 1;
   justify-self: center;
@@ -88,7 +81,6 @@
   font-size: 18px;
   line-height: 1.35;
 
-  /* "\n" in the translations starts a new paragraph */
   p {
     margin: 0 0 16px;
 
@@ -113,8 +105,6 @@
     background: var(--color-line);
   }
 }
-
-/* ---------- controls ---------- */
 
 .controls {
   display: flex;
@@ -187,7 +177,6 @@
     padding: 52px 28px 32px;
   }
 
-  /* line moves above the author, so long roles can wrap */
   .card__author {
     flex-direction: column;
     align-items: stretch;

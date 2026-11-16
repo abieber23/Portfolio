@@ -1,3 +1,8 @@
+// TODO: remove this rule once D-ID is integrated (section is hidden until then)
+:host {
+  display: none;
+}
+
 .avatar {
   max-width: 1440px;
   margin: 0 auto;
@@ -38,11 +43,8 @@
   gap: 96px;
 }
 
-/* ---------- avatar video with striped backdrop ---------- */
-
 .stage {
   position: relative;
-  /* keep its own height – the striped backdrop must not follow the chat's height */
   align-self: start;
 
   &::before {
@@ -93,7 +95,6 @@
   color: var(--color-accent);
 }
 
-/* consent gate over the video until the visitor starts the avatar */
 .stage__start {
   position: absolute;
   inset: auto 1px 1px;
@@ -144,8 +145,6 @@
   }
 }
 
-/* ---------- chat card ---------- */
-
 .chat {
   display: flex;
   flex-direction: column;
@@ -181,8 +180,6 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  /* fixed height (min-height 0 overrides the flex default "auto" = content size):
-     long conversations scroll inside instead of growing the card */
   flex: 0 0 360px;
   min-height: 0;
   margin: 0 0 24px;
@@ -340,7 +337,6 @@
     gap: 56px;
   }
 
-  /* smaller stripe offset, so the backdrop stays inside the viewport */
   .stage::before {
     top: 24px;
     left: -16px;
@@ -359,7 +355,6 @@
     font-size: clamp(30px, 9vw, 40px);
   }
 
-  /* justified text leaves big word gaps in a narrow column */
   .avatar__intro {
     text-align: left;
   }

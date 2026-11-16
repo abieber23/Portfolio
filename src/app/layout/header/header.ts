@@ -20,10 +20,12 @@ export class Header {
   protected readonly profile = PROFILE;
   protected readonly menuOpen = signal(false);
 
+  /** Opens or closes the mobile menu. */
   toggleMenu(): void {
     this.menuOpen.update((open) => !open);
   }
 
+  /** Closes the mobile menu (e.g. on Esc or after clicking a link). */
   closeMenu(): void {
     this.menuOpen.set(false);
   }
