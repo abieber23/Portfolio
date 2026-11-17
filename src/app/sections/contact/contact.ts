@@ -1,5 +1,12 @@
 import { Component, inject, signal } from '@angular/core';
-import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  NonNullableFormBuilder,
+  ReactiveFormsModule,
+  ValidationErrors,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { LanguageService } from '../../core/language.service';
 import { PROFILE } from '../../core/profile';
@@ -11,6 +18,17 @@ const EMAIL_PATTERN =
 
 /** At least two letters; words of letters joined by spaces, hyphens, apostrophes or dots (e.g. "Jean-Luc O'Neil", "Dr. Müller"). */
 const NAME_PATTERN = /^(?=(?:.*\p{L}){2})[\p{L}\p{M}]+(?:[ '’.-]+[\p{L}\p{M}]+)*\.?$/u;
+
+/** Minimum number of characters for the message (spaces at the start/end don't count). */
+const MESSAGE_MIN_LENGTH = 10;
+
+/** Like `Validators.minLength`, but ignores leading/trailing whitespace so ten spaces don't count as a message. */
+function minTrimmedLength(min: number): ValidatorFn {
+  return (control: AbstractControl<string>): ValidationErrors | null => {
+    const length = control.value.trim().length;
+    return length > 0 && length < min ? { minlength: { requiredLength: min, actualLength: length } } : null;
+  };
+}
 
 type TextField = 'name' | 'email' | 'message';
 type SendStatus = 'idle' | 'sending' | 'success' | 'error';
@@ -30,7 +48,7 @@ export class Contact {
   protected readonly form = inject(NonNullableFormBuilder).group({
     name: ['', [Validators.required, Validators.maxLength(100), Validators.pattern(NAME_PATTERN)]],
     email: ['', [Validators.required, Validators.maxLength(254), Validators.pattern(EMAIL_PATTERN)]],
-    message: ['', Validators.required],
+    message: ['', [Validators.required, minTrimmedLength(MESSAGE_MIN_LENGTH)]],
     privacy: [false, Validators.requiredTrue],
     website: [''],
   });
@@ -55,7 +73,7 @@ export class Contact {
   }
 
   /** Whether a field has a value that is filled in but not valid (as opposed to missing). */
-  protected showInvalid(field: 'name' | 'email'): boolean {
+  protected showInvalid(field: TextField): boolean {
     return this.showError(field) && !this.form.controls[field].hasError('required');
   }
 
@@ -84,7 +102,8 @@ export class Contact {
       const response = await fetch(MAIL_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, message, website }),
+        // The honeypot is only sent when a bot filled it in (sendMail.php treats a missing field as empty).
+        body: JSON.stringify({ name, email, message, ...(website && { website }) }),
       });
       const result: { ok?: boolean } = await response.json();
       if (!response.ok || !result.ok) throw new Error(`Mail endpoint answered ${response.status}`);

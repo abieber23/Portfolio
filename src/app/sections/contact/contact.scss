@@ -123,10 +123,11 @@
   field-sizing: content;
 }
 
+/* In normal flow so longer messages wrap instead of overlapping the input. The negative margins
+   (gap 16px − 10px = 6px above; one line + 6px below) let a single-line message sit in the bottom
+   padding without changing the field height; each extra line grows the field. */
 .field__error {
-  position: absolute;
-  left: 32px;
-  bottom: 5px;
+  margin: -10px 0 calc(-1.2em - 6px);
   font-size: 16px;
   line-height: 1.2;
   color: var(--color-error);
@@ -323,10 +324,6 @@
 
   .field {
     padding: 24px 16px 30px;
-  }
-
-  .field__error {
-    left: 16px;
   }
 }
 

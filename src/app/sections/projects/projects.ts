@@ -28,7 +28,7 @@ export class Projects {
       techs: ['HTML', 'CSS', 'JavaScript'],
       github: 'https://github.com/abieber23/Sharkie',
       live: 'https://sharkie.adrian-bieber-portfolio.de/',
-      image: 'img/projects/sharkie.png',
+      image: 'img/projects/sharkie.webp',
     },
     {
       key: 'bubble',
