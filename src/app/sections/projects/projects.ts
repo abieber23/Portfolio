@@ -33,7 +33,7 @@ export class Projects {
     {
       key: 'bubble',
       name: 'DA Bubble',
-      techs: ['Angular', 'Firebase', 'TypeScript'],
+      techs: ['Angular', 'Supabase', 'TypeScript'],
       github: 'https://github.com/ChristopherBraun196/DA-Bubble',
       live: 'https://da-bubble.adrian-bieber-portfolio.de/',
       image: 'img/projects/da-bubble.png',

@@ -72,6 +72,11 @@ export class Contact {
     return name.valid && email.valid && message.valid;
   }
 
+  /** Whether a field shows the green check mark: as soon as its value is valid (also while typing). */
+  protected isValid(field: TextField): boolean {
+    return this.form.controls[field].valid;
+  }
+
   /** Whether a field has a value that is filled in but not valid (as opposed to missing). */
   protected showInvalid(field: TextField): boolean {
     return this.showError(field) && !this.form.controls[field].hasError('required');

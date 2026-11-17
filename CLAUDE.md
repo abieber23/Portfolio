@@ -42,7 +42,6 @@ job applications as a frontend developer. The user communicates in **German** â€
 ## Open TODOs (placeholders)
 
 - `profile.ts`: real LinkedIn URL
-- `projects.ts`: Firebase icon missing
 - `legal-texts.ts`: log retention days `[X]` (from the all-inkl AVV), D-ID address
 - Contact form posts JSON to `public/sendMail.php` (PHP `mail()`, sender `noreply@adrian-bieber-portfolio.de`,
   honeypot field `website`). Verified working on the live server (all-inkl / kasserver); PHP doesn't run

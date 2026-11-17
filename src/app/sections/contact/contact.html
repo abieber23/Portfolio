@@ -26,6 +26,11 @@
         (focus)="focused.set('name')"
         (blur)="onBlur('name')"
       />
+      @if (isValid('name')) {
+        <svg class="field__valid" viewBox="0 0 24 24" aria-hidden="true" animate.enter="field__valid--enter" animate.leave="field__valid--leave">
+          <path d="m4 12.5 5 5L20 6.5" />
+        </svg>
+      }
       @if (showInvalid('name')) {
         <span id="name-error" class="field__error" animate.enter="field__error--enter">{{ t.nameInvalid }}</span>
       }
@@ -44,6 +49,11 @@
         (focus)="focused.set('email')"
         (blur)="onBlur('email')"
       />
+      @if (isValid('email')) {
+        <svg class="field__valid" viewBox="0 0 24 24" aria-hidden="true" animate.enter="field__valid--enter" animate.leave="field__valid--leave">
+          <path d="m4 12.5 5 5L20 6.5" />
+        </svg>
+      }
       @if (showInvalid('email')) {
         <span id="email-error" class="field__error" animate.enter="field__error--enter">{{ t.emailInvalid }}</span>
       }
@@ -61,6 +71,11 @@
         (focus)="focused.set('message')"
         (blur)="onBlur('message')"
       ></textarea>
+      @if (isValid('message')) {
+        <svg class="field__valid" viewBox="0 0 24 24" aria-hidden="true" animate.enter="field__valid--enter" animate.leave="field__valid--leave">
+          <path d="m4 12.5 5 5L20 6.5" />
+        </svg>
+      }
       @if (showInvalid('message')) {
         <span id="message-error" class="field__error" animate.enter="field__error--enter">{{ t.messageInvalid }}</span>
       }

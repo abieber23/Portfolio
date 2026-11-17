@@ -15,6 +15,6 @@ export const TECH_ICONS: Record<string, string | undefined> = {
   JavaScript: 'img/skills/javascript.png',
   HTML: 'img/skills/html.png',
   CSS: 'img/skills/css.png',
-  // TODO: add img/skills/firebase.png
-  Firebase: undefined,
+  Supabase: 'img/skills/supabase.png',
+  Firebase: 'img/skills/Firebase_icon.png',
 };

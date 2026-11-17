@@ -88,7 +88,7 @@
 
 .field__input {
   width: 100%;
-  padding: 0;
+  padding: 0 34px 0 0; /* room on the right for the valid check mark */
   border: none;
   outline: none;
   background: transparent;
@@ -113,6 +113,51 @@
     -webkit-text-fill-color: var(--color-text);
     -webkit-box-shadow: 0 0 0 1000px var(--color-bg) inset;
     transition: background-color 9999s ease-out;
+  }
+}
+
+/* Green check at the end of the input row, vertically centered on its (last) line:
+   bottom padding 30px + (line height 25.2px − icon 22px) / 2. */
+.field__valid {
+  position: absolute;
+  right: 32px;
+  bottom: 31.6px;
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: var(--color-success);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: none;
+
+  path {
+    stroke-dasharray: 24;
+  }
+}
+
+.field__valid--enter {
+  animation: valid-in 0.2s ease-out;
+
+  path {
+    animation: valid-draw 0.3s ease-out 0.05s backwards;
+  }
+}
+
+.field__valid--leave {
+  animation: valid-in 0.15s ease-in reverse forwards;
+}
+
+@keyframes valid-in {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+}
+
+@keyframes valid-draw {
+  from {
+    stroke-dashoffset: 24;
   }
 }
 
@@ -324,6 +369,10 @@
 
   .field {
     padding: 24px 16px 30px;
+  }
+
+  .field__valid {
+    right: 16px;
   }
 }
 

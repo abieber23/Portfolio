@@ -21,7 +21,8 @@
     </nav>
   </div>
 
-  <a routerLink="/" fragment="top" class="header__logo" [attr.aria-label]="profile.firstName + ' ' + profile.lastName">
+  <!-- Plain href (no routerLink): a click reloads the whole page from the top. -->
+  <a href="/" class="header__logo" [attr.aria-label]="profile.firstName + ' ' + profile.lastName">
     <app-logo />
   </a>
 
